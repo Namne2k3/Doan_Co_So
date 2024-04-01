@@ -596,11 +596,10 @@
             toggle_icon.classList.add("bi-arrow-up-circle")
 
         } else {
-            
-            parentElement.scrollIntoView({ behavior: 'smooth' , block: "start" })
+            parentElement.scrollIntoView({ behavior: 'smooth' })
+            console.log(parentElement)
             element.classList.add("temp_hidden")
             // scroll execute
-            console.log("da chay scroll")
             toggle_icon.classList.remove("bi-arrow-up-circle")
             toggle_icon.classList.add("bi-arrow-down-circle")
         }

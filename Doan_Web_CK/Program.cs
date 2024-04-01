@@ -1,4 +1,5 @@
 using Doan_Web_CK;
+using Doan_Web_CK.Hubs;
 using Doan_Web_CK.Models;
 using Doan_Web_CK.Repository;
 using Microsoft.AspNetCore.Identity;
@@ -15,6 +16,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoles<IdentityRole>();
 
+builder.Services.AddSignalR();
+
+builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IBlogRepository, EFBlogRepository>();
@@ -26,6 +31,8 @@ builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 builder.Services.AddScoped<IFriendShipRepository, EFFriendShipRepository>();
 
 builder.Services.AddLogging(builder => builder.AddConsole());
+
+
 
 var app = builder.Build();
 
@@ -45,6 +52,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapHub<ChatHub>("/chatHub");
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapAreaControllerRoute(
