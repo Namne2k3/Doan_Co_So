@@ -132,11 +132,11 @@
                                                             {
                                                                 @if (ViewBag.IsFriend(UserManager.GetUserId(User), item.AccountId) == true)
                                                                 {
-                                                                    <a onclick="handleUnFriend('@currentUser.Id', '@item.AccountId', @item.Id)" class="btn btn-dark">Unfriend</a>
+                                                                    <a onclick="handleUnFriend('@currentUser?.Id', '@item.AccountId', @item.Id)" class="btn btn-dark">Unfriend</a>
                                                                 }
                                                                 else
                                                                 {
-                                                                    <a onclick="handleAddFriend('@currentUser.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>
+                                                                    <a onclick="handleAddFriend('@currentUser?.Id', '@item.Id')" class="btn btn-dark">Add Friend</a>
                                                                 }
                                                             }
                                                             else
@@ -472,6 +472,15 @@
                 </div>
             </div>
         }
+        <a asp-controller="Chat" asp-action="Index" class="nav_item">
+            @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
+            <div class="navIcon text-center">
+                <i class="icon bi bi-wechat"></i>
+            </div>
+            <div class="navTitle w-75 fs-4 text-start my-auto">
+                Messages
+            </div>
+        </a>
         <a asp-controller="Profile" asp-action="Index" class="nav_item">
             @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
             <div class="navIcon text-center">
@@ -483,4 +492,3 @@
         </a>
     </ul>
 }
-

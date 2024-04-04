@@ -53,6 +53,7 @@ namespace Doan_Web_CK.Repository
                 .Include(x => x.Blogs)
                 .Include(x => x.Friendships)
                 .Include(x => x.Nofitications)
+                .Include(x => x.Messages)
                 .ToListAsync();
         }
 
@@ -62,6 +63,7 @@ namespace Doan_Web_CK.Repository
                 .Include(x => x.Blogs)
                 .Include(x => x.Friendships)
                 .Include(x => x.Nofitications)
+                .Include(x => x.Messages)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

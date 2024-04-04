@@ -18,6 +18,7 @@ namespace Doan_Web_CK.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IFriendShipRepository _friendShipRepository;
         private readonly INotifiticationRepository _notifiticationRepository;
+        private readonly IChatRoomRepository _chatRoomRepository;
         public ProfileController(
             UserManager<ApplicationUser> userManager,
             IAccountRepository accountRepository,
@@ -26,7 +27,8 @@ namespace Doan_Web_CK.Controllers
             ILikeRepository likeRepository,
             ICategoryRepository categoryRepository,
             IFriendShipRepository friendShipRepository,
-            INotifiticationRepository noticeRepository
+            INotifiticationRepository noticeRepository,
+            IChatRoomRepository chatRoomRepository
         )
         {
             _userManager = userManager;
@@ -37,6 +39,7 @@ namespace Doan_Web_CK.Controllers
             _categoryRepository = categoryRepository;
             _friendShipRepository = friendShipRepository;
             _notifiticationRepository = noticeRepository;
+            _chatRoomRepository = chatRoomRepository;
         }
 
         [HttpPost]
@@ -79,6 +82,17 @@ namespace Doan_Web_CK.Controllers
                 message = "success"
             });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var currentUser = await _userManager.GetUserAsync(User);
+            return Json(new
+            {
+                currentUser = currentUser.ToString()
+            });
+        }
+
         public async Task<IActionResult> UpdateProfile(string id)
         {
             var currentUser = await _userManager.GetUserAsync(User);
@@ -309,7 +323,7 @@ namespace Doan_Web_CK.Controllers
         public async Task<bool> IsFriendAsync(string userId, string friendId)
         {
             var friendship = await _friendShipRepository.GetAllAsync();
-            var finded = friendship.SingleOrDefault(p => p.UserId == userId || p.FriendId == userId && p.UserId == friendId || p.FriendId == friendId);
+            var finded = friendship.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId);
             if (finded != null && finded.IsConfirmed == true)
             {
                 return true;
@@ -367,13 +381,30 @@ namespace Doan_Web_CK.Controllers
         public async Task<IActionResult> AcceptFriendRequest(string userId, int nofId)
         {
             var friendShip = await _friendShipRepository.GetAllAsync();
-            var finded = friendShip.SingleOrDefault(p => p.FriendId == userId);
+            var nof = await _notifiticationRepository.GetByIdAsync(nofId);
+
+            var finded = friendShip.SingleOrDefault(p => p.FriendId == userId && p.UserId == nof.SenderAccountId);
             StringBuilder newHtml = new StringBuilder();
             if (finded != null)
             {
                 finded.IsConfirmed = true;
                 await _friendShipRepository.UpdateAsync(finded);
                 await _notifiticationRepository.DeleteAsync(nofId);
+
+                var account = await _accountRepository.GetByIdAsync(finded.FriendId);
+
+                var chatroom = new ChatRoom
+                {
+                    roomName = finded.User.UserName,
+                    User = finded.Friend,
+                    UserId = userId,
+                    FriendId = finded.UserId,
+                    Friend = finded.User,
+                    Messages = new List<Message>(),
+                };
+
+                await _chatRoomRepository.AddAsync(chatroom);
+
                 //< a onclick = "handleAccept(' @currentUser?.Id ', @nof.Id)" class="btn btn-outline-dark">Accept</a>
                 //<a class="btn btn-outline-dark">Deny</a>
                 newHtml.Append("<a class=\"disabled btn btn-outline-dark\">Accepted</a>");
@@ -393,7 +424,7 @@ namespace Doan_Web_CK.Controllers
 
         {
             var user = await _userManager.GetUserAsync(User);
-            var account = await _accountRepository.GetByIdAsync(user.Id);
+            var account = await _accountRepository.GetByIdAsync(user?.Id);
 
             if (id != null)
             {
@@ -408,15 +439,15 @@ namespace Doan_Web_CK.Controllers
             ViewBag.blogList = accountBlogs;
             ViewBag.currentUser = user;
             ViewBag.GetPhotoById = new Func<string, string>(GetPhotoById);
-            ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.GetAllBlogComments = new Func<int, IEnumerable<Comment>>(GetAllBlogComments);
             ViewBag.IsCurrentUserLiked = new Func<int, string, bool>(IsCurrentUserLiked);
             ViewBag.GetUserNameByBlogId = new Func<int, string>(GetUserNameByBlogId);
             ViewBag.GetBlogLikesCount = new Func<int, int>(GetBlogLikesCount);
             ViewBag.GetBlogCommentsCount = new Func<int, int>(GetBlogCommentsCount);
+            ViewBag.IsFriend = new Func<string, string, bool>(IsFriend);
+            ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
-            ViewBag.IsFriend = new Func<string, string, bool>(IsFriend);
             return View();
         }
         public async Task<bool> IsRequestedAsync(string userId, string friendId)

@@ -16,8 +16,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoles<IdentityRole>();
 
+builder.Services.AddAuthentication();
 builder.Services.AddSignalR();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddRazorPages();
@@ -29,6 +30,8 @@ builder.Services.AddScoped<INotifiticationRepository, EFNofiticationRepository>(
 builder.Services.AddScoped<IAccountRepository, EFAccountRepository>();
 builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 builder.Services.AddScoped<IFriendShipRepository, EFFriendShipRepository>();
+builder.Services.AddScoped<IMessageRepository, EFMessageRepository>();
+builder.Services.AddScoped<IChatRoomRepository, EFChatRoomRepository>();
 
 builder.Services.AddLogging(builder => builder.AddConsole());
 
@@ -52,7 +55,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.MapHub<ChatHub>("/chatHub");
 
 app.UseEndpoints(endpoints =>
 {
@@ -67,6 +69,7 @@ app.UseEndpoints(endpoints =>
         name: "default",
         pattern: "{controller=Blog}/{action=Index}/{id?}");
 
+    endpoints.MapHub<ChatHub>("/chatHub").RequireAuthorization();
 });
 using (var scope = app.Services.CreateScope())
 {
