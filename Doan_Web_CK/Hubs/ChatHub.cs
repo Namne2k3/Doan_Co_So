@@ -44,7 +44,9 @@ namespace Doan_Web_CK.Hubs
                     leftOrRight = "left";
                 }
             }
-            await Clients.Users([user, receiverConnectionId]).SendAsync("ReceiveMessage", user, message, sender.ImageUrl, leftOrRight);
+            //await Clients.Users([user, receiverConnectionId]).SendAsync("ReceiveMessage", user, message, sender.ImageUrl, leftOrRight);
+            await Clients.User(user).SendAsync("ReceiveMessage", user, message, sender.ImageUrl, "right");
+            await Clients.User(receiverConnectionId).SendAsync("ReceiveMessage", receiverConnectionId, message, sender.ImageUrl, "left");
         }
 
         public string GetConnectionId() => Context.UserIdentifier;

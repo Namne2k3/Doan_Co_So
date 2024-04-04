@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 475,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
@@ -131,8 +131,7 @@
               "RelativeToolTip": "Doan_Web_CK\\Views\\Chat\\Index.cshtml",
               "ViewState": "AQIAABwAAAAAAAAAAAAAADoAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T17:36:29.252Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-02T17:36:29.252Z"
             },
             {
               "$type": "Document",
@@ -144,31 +143,30 @@
               "RelativeToolTip": "Doan_Web_CK\\Controllers\\ChatController.cs",
               "ViewState": "AQIAACgAAAAAAAAAAAArwDwAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T08:54:38.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-02T08:54:38.527Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ChatHub.cs",
               "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Hubs\\ChatHub.cs",
               "RelativeDocumentMoniker": "Doan_Web_CK\\Hubs\\ChatHub.cs",
               "ToolTip": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Hubs\\ChatHub.cs",
               "RelativeToolTip": "Doan_Web_CK\\Hubs\\ChatHub.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAgwA4AAAABAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAgwDAAAACGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-02T18:19:30.801Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "chat.js",
               "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\chat.js",
               "RelativeDocumentMoniker": "Doan_Web_CK\\wwwroot\\js\\chat.js",
               "ToolTip": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\chat.js",
               "RelativeToolTip": "Doan_Web_CK\\wwwroot\\js\\chat.js",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAYwFsAAAADAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2024-04-02T17:56:31.247Z",
               "EditorCaption": ""
@@ -183,8 +181,7 @@
               "RelativeToolTip": "Doan_Web_CK\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-02T19:35:42.052Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-02T19:35:42.052Z"
             },
             {
               "$type": "Document",
@@ -196,8 +193,7 @@
               "RelativeToolTip": "Doan_Web_CK\\Views\\Home\\Index.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-04T12:34:52.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-04T12:34:52.511Z"
             },
             {
               "$type": "Document",
