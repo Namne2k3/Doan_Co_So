@@ -7,9 +7,10 @@
     var currentUser = ViewBag.currentUser;
     var currentChatroom = ViewBag.currentChatRoom;
 }
-
+<script src="./js/signalr/dist/browser/signalr.js"></script>
+<script src="./js/chat.js"></script>
 <div class="body_container">
-    <div class="d-flex gap-4">
+    <div class="message_section_container">
         <div class="chatroom_container">
             @foreach ( var cr in Model)
             {
@@ -81,6 +82,7 @@
                                         </div>
                                         <p>@ms.Text</p>
                                     </div>
+                                    <p style="text-align: right;" >@ms.Time</p>
                                 </div>
                             } else
                             {
@@ -91,6 +93,7 @@
                                         </div>
                                         <p>@ms.Text</p>
                                     </div>
+                                    <p style="text-align: left;">@ms.Time</p>
                                 </div>   
                             }
                         }
@@ -105,7 +108,7 @@
                     <input id="receiverId" value="@currentChatroom?.UserId" hidden />
                 }
                 <div class="message_input_container">
-                    <input id="messageInput" onkeypress="handleSendMessage(event)" placeholder="Writing something ... " type="text" class="form-control" />
+                    <input id="messageInput" onkeypress="handleSendMessage(event)" placeholder="Writing something ... " type="text" class="form-control message_input" />
                 </div>
             </div>
         }
@@ -239,5 +242,3 @@
         </a>
     </ul>
 }
-<script src="./js/signalr/dist/browser/signalr.js"></script>
-<script src="./js/chat.js"></script>

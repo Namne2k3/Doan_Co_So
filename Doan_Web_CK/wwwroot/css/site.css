@@ -1,6 +1,10 @@
 html {
     font-size: 14px;
     scroll-behavior: smooth;
+    height: 100vh;
+}
+footer {
+    display: none;
 }
 main {
     margin: 1.5rem;
@@ -15,7 +19,7 @@ main {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    width: 40%;
+    width: 30%;
     min-height: 100vh;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -30,8 +34,8 @@ main {
     text-decoration: none;
 }
 .chatroom_card_img_container {
-    width: 75px;
-    height: 75px;
+    min-width: 50px;
+    height: 50px;
 }
 .chatroom_card_img {
     width: 100%;
@@ -113,7 +117,15 @@ main {
     font-weight: bold;
     text-decoration: none;
 }
-
+.message_item p {
+    font-size: 12px;
+    color: #ccc;
+    font-style: italic;
+    margin-top: 2px;
+}
+.message_input {
+    border-radius: 32px;
+}
 .message_item_user_text {
     display: flex;
     flex-direction: row-reverse;
@@ -147,7 +159,10 @@ main {
     object-fit: cover;
     border-radius: 100%;
 }
-
+.message_section_container {
+    display: flex;
+    gap: 16px;
+}
 #update_fail_blog,
 #update_success_blod {
     display: none
@@ -537,7 +552,7 @@ body {
     overflow: hidden;
 }
 .icon {
-    font-size: 32px;
+    font-size: 24px;
 }
 .partial_section ul {
     margin: 0!important;
@@ -552,7 +567,7 @@ body {
 }
 .body_container {
     overflow-y: scroll;
-    height: 100vh;
+    max-height: 100vh;
     scrollbar-width: none;
 }
 
@@ -693,7 +708,12 @@ input {
 .right_click_menu a {
     font-size: 12px;
 }
+.navItems {
 
+}
+.navTitle {
+    font-size: 20px !important;
+}
 @media (max-width: 1065px) {
     .recently_post_container {
         display: none!important;
@@ -704,8 +724,12 @@ input {
     .navTitle {
         display: none;
     }
+
+    .nof_icon,
     .nav_item {
         justify-content: center;
+        margin-top: 8px;
+        padding: 4px;
     }
     .navIcon {
         justify-content: center;
@@ -729,6 +753,38 @@ input {
     }
 }
 @media (max-width: 550px) {
+    .messages_container {
+        max-height: 76vh !important;
+    }
+    footer {
+        display: none;
+    }
+    .main {
+        margin: 12px;
+    }
+    
+    .chatroom_card {
+        padding: 0;
+        border-radius: 100%;
+    }
+    .chatroom_card_info {
+        display: none;
+    }
+    .chatroom_container {
+        flex-direction: row;
+        width: 100%;
+        overflow-x: scroll;
+        scrollbar-width: none;
+        background-color: #111213;
+        padding: 12px;
+        border-radius: 12px;
+    }
+    .chatroom_container {
+        min-height: 0;
+    }
+    .message_section_container {
+        flex-direction: column;
+    }
     .comments_actions {
         left: -45px;
         bottom: 70px;
@@ -790,7 +846,7 @@ input {
     .body_section {
         width: 100%;
         height: 100vh;
-        margin-top: 90px;
+        margin-top:66px;
     }
     .logo_container {
         justify-content: start !important;
@@ -838,6 +894,7 @@ input {
     }
 }
 @media (max-width: 390px) {
+   
     .nav_item_nofitications {
         top: 100% !important;
         left: -50px !important;
@@ -859,6 +916,9 @@ input {
     }
 }
 @media (max-width: 300px) {
+    .messages_container {
+        max-height: 72vh!important;
+    }
     main {
         margin: 12px !important;
     }

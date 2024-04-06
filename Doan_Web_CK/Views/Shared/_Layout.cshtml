@@ -17,15 +17,15 @@
 <body>
     <div class="d-flex flex-column vh-100">
         <div class="nav_container h-100">
-            <div class="navIcons col-md-3 bg-dark justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
+            <div class="navIcons col-md-2 bg-dark justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
                 @RenderSection("NavContent", required: false)
                 @if (!SignInManager.IsSignedIn(User))
                 {
                     <partial hidden name="_LoginPartial" />
                 }
             </div>
-            <div class="body_section col-md-9 text-white" style="background-color: #212529">
-                <main role="main" class="pb-3">
+            <div class="body_section col-md-10 text-white" style="background-color: #212529">
+                <main class="main" role="main" class="pb-3">
                     @RenderBody()
                 </main>
             </div>
@@ -40,6 +40,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

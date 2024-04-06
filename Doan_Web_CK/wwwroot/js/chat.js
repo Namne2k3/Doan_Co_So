@@ -32,6 +32,11 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight) 
 
         // Thêm div vào danh sách tin nhắn
         document.getElementById("messages_display_container").appendChild(divMessageItem);
+        var messages_display_container = document.getElementById("messages_display_container")
+        if (messages_display_container) {
+            console.log("lan")
+            messages_display_container.scrollTop = messages_display_container.scrollHeight;
+        }
         // Tạo các phần tử HTML
     } else {
         var divMessageItem = document.createElement("div");
@@ -58,6 +63,12 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight) 
 
         // Thêm div vào danh sách tin nhắn
         document.getElementById("messages_display_container").appendChild(divMessageItem);
+
+        var messages_display_container = document.getElementById("messages_display_container")
+        if (messages_display_container) {
+            console.log("lan")
+            messages_display_container.scrollTop = messages_display_container.scrollHeight;
+        }
     }
 });
 function handleSendMessage(event) {
@@ -66,9 +77,11 @@ function handleSendMessage(event) {
             var user = document.getElementById("userInput").value;
             var receiverConnectionId = document.getElementById("receiverId").value;
             var message = document.getElementById("messageInput").value;
-            connection.invoke("SendToUser", user, receiverConnectionId, message).catch(function (err) {
-                return console.error(err.toString());
-            });
+            if (message != " ") {
+                connection.invoke("SendToUser", user, receiverConnectionId, message).catch(function (err) {
+                    return console.error(err.toString());
+                });
+            }
             event.preventDefault();
         }
     }
