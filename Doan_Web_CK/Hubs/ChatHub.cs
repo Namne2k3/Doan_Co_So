@@ -21,32 +21,30 @@ namespace Doan_Web_CK.Hubs
 
         public async Task SendToUser(string user, string receiverConnectionId, string message)
         {
-            var sender = await _accountRepository.GetByIdAsync(user);
-            var receiver = await _accountRepository.GetByIdAsync(receiverConnectionId);
-            var leftOrRight = "right";
-
-            var chatroom = await _chatRoomRepository.GetByUsersIdAsync(sender.Id, receiver.Id);
-            if (chatroom != null)
+            if (message != "")
             {
-                var newMessage = new Message
+                var sender = await _accountRepository.GetByIdAsync(user);
+                var receiver = await _accountRepository.GetByIdAsync(receiverConnectionId);
+                var time = DateTime.Now;
+                var chatroom = await _chatRoomRepository.GetByUsersIdAsync(sender.Id, receiver.Id);
+                if (chatroom != null)
                 {
-                    UserName = sender.UserName,
-                    UserImageUrl = sender.ImageUrl,
-                    Text = message,
-                    Time = DateTime.Now,
-                    userId = sender.Id,
-                    ApplicationUser = sender,
-                    ChatRoomId = chatroom.Id,
-                };
-                await _chatRoomRepository.AddMessagesAsync(chatroom, newMessage);
-                if (sender.Id != newMessage.userId)
-                {
-                    leftOrRight = "left";
+                    var newMessage = new Message
+                    {
+                        UserName = sender.UserName,
+                        UserImageUrl = sender.ImageUrl,
+                        Text = message,
+                        Time = DateTime.Now,
+                        userId = sender.Id,
+                        ApplicationUser = sender,
+                        ChatRoomId = chatroom.Id,
+                    };
+                    await _chatRoomRepository.AddMessagesAsync(chatroom, newMessage);
+                    time = newMessage.Time;
                 }
+                await Clients.User(user).SendAsync("ReceiveMessage", user, message, sender.ImageUrl, "right", time.ToString());
+                await Clients.User(receiverConnectionId).SendAsync("ReceiveMessage", receiverConnectionId, message, sender.ImageUrl, "left", time.ToString());
             }
-            //await Clients.Users([user, receiverConnectionId]).SendAsync("ReceiveMessage", user, message, sender.ImageUrl, leftOrRight);
-            await Clients.User(user).SendAsync("ReceiveMessage", user, message, sender.ImageUrl, "right");
-            await Clients.User(receiverConnectionId).SendAsync("ReceiveMessage", receiverConnectionId, message, sender.ImageUrl, "left");
         }
 
         public string GetConnectionId() => Context.UserIdentifier;

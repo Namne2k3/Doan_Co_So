@@ -1,9 +1,10 @@
-﻿var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+﻿"use strict";
+var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
 
 //Disable send button until connection is established
 //document.getElementById("sendButton").disabled = true;
 
-connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight) {
+connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, time) {
     var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     var encodedMsg = message
 
@@ -28,13 +29,17 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight) 
         // Ghép các phần tử vào nhau
         divMessageItemFriendText.appendChild(divMessageItemImgContainer);
         divMessageItemFriendText.appendChild(pTextLeft);
+
+        var p_time = document.createElement("p");
+        p_time.textContent = time
+
         divMessageItem.appendChild(divMessageItemFriendText);
+        divMessageItem.appendChild(p_time);
 
         // Thêm div vào danh sách tin nhắn
         document.getElementById("messages_display_container").appendChild(divMessageItem);
         var messages_display_container = document.getElementById("messages_display_container")
         if (messages_display_container) {
-            console.log("lan")
             messages_display_container.scrollTop = messages_display_container.scrollHeight;
         }
         // Tạo các phần tử HTML
@@ -59,14 +64,18 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight) 
         // Ghép các phần tử vào nhau
         divMessageItemFriendText.appendChild(divMessageItemImgContainer);
         divMessageItemFriendText.appendChild(pTextLeft);
+
+        var p_time = document.createElement("p");
+        p_time.textContent = time
+
         divMessageItem.appendChild(divMessageItemFriendText);
+        divMessageItem.appendChild(p_time);
 
         // Thêm div vào danh sách tin nhắn
         document.getElementById("messages_display_container").appendChild(divMessageItem);
 
         var messages_display_container = document.getElementById("messages_display_container")
         if (messages_display_container) {
-            console.log("lan")
             messages_display_container.scrollTop = messages_display_container.scrollHeight;
         }
     }
@@ -86,13 +95,6 @@ function handleSendMessage(event) {
         }
     }
 }
-//connection.on("ReceiveMessage", function (user, message, imageUrl) {
-//    var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-//    var encodedMsg = user + " says " + msg;
-//    var li = document.createElement("li");
-//    li.textContent = encodedMsg;
-//    document.getElementById("messagesList").appendChild(li);
-//});
 
 connection.start().then(function () {
     console.log("Connected");
@@ -104,7 +106,7 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-if (document.getElementById("sendButton")) {
+if (document.getElementById("sendButton") != null ) {
     document.getElementById("sendButton").addEventListener("click", function (event) {
         var user = document.getElementById("userInput").value;
         var message = document.getElementById("messageInput").value;
@@ -114,13 +116,14 @@ if (document.getElementById("sendButton")) {
         event.preventDefault();
     });
 }
-
-document.getElementById("sendToUser").addEventListener("click", function (event) {
-    var user = document.getElementById("userInput").value;
-    var receiverConnectionId = document.getElementById("receiverId").value;
-    var message = document.getElementById("messageInput").value;
-    connection.invoke("SendToUser", user, receiverConnectionId, message).catch(function (err) {
-        return console.error(err.toString());
+if (document.getElementById("sendToUser") != null) {
+    document.getElementById("sendToUser").addEventListener("click", function (event) {
+        var user = document.getElementById("userInput").value;
+        var receiverConnectionId = document.getElementById("receiverId").value;
+        var message = document.getElementById("messageInput").value;
+        connection.invoke("SendToUser", user, receiverConnectionId, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+        event.preventDefault();
     });
-    event.preventDefault();
-});
+}

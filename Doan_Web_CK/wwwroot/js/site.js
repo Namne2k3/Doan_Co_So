@@ -471,12 +471,14 @@ function handleLike(id) {
     handleToggleLike(id)
 }
 
-document.querySelector("#profile_photo_input").addEventListener("change", handlePreviewPhoto);
+if (document.querySelector("#profile_photo_input") != null ) {
+    document.querySelector("#profile_photo_input").addEventListener("change", handlePreviewPhoto);
 
-if (!document.getElementById("profile_photo_input").value != "") {
-    console.log("Chay lan dau")
-    document.getElementById("saveChange_button").classList.remove("flex")
-    document.getElementById("saveChange_button").classList.add("hidden")
+    if (!document.getElementById("profile_photo_input").value != "") {
+        console.log("Chay lan dau")
+        document.getElementById("saveChange_button").classList.remove("flex")
+        document.getElementById("saveChange_button").classList.add("hidden")
+    }
 }
 
 function handlePreviewPhoto() {

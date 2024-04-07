@@ -7,9 +7,9 @@
     ViewData["Title"] = "Edit";
     var user = ViewBag.User;
 }
-<h1 class="mt-2">Edit</h1>
-<hr />
-<div class="row">
+<div class="row margin_auto">
+    <h1 class="mt-2">Edit</h1>
+    <hr />
     <div class="col-lg-12 mx-auto">
         <form onsubmit="editblog()" id="edit_form" class="d-flex flex-column gap-3" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -57,7 +57,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 @section NavContent {
     <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
-        <div class="nav_item">
+        <div class="">
             <div class="logo_container d-flex gap-2 w-100 justify-content-center">
                 <div class="logo_image_container">
                     <img src="/images/logo_2.png" class="logo_image" />

@@ -12,8 +12,8 @@
     var currentUser = ViewBag.currentUser;
 }
 
-<div class="body_container">
-    <div class="d-flex flex-column gap-4 p-3 profile_container">
+<div class="body_container margin_auto">
+    <div class="d-flex flex-column gap-4 p-3 profile_container" style="background-image: url(@account.ImageUrl)">
         <div class="d-flex profile_header gap-4 align-items-center">
             <div class="profile_photo position-relative">
                 <div class="profile_img_container">
@@ -261,7 +261,7 @@
 </div>
 @section NavContent {
     <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
-        <div class="nav_item">
+        <div class="">
             <div class="logo_container d-flex gap-2 w-100 justify-content-center">
                 <div class="logo_image_container">
                     <img src="/images/logo_2.png" class="logo_image" />

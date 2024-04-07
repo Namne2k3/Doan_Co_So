@@ -3,6 +3,11 @@ html {
     scroll-behavior: smooth;
     height: 100vh;
 }
+.nav_item:first-child:hover {
+    cursor: default;
+    background-color: #212529;
+    color: #fff!important;
+}
 footer {
     display: none;
 }
@@ -350,21 +355,23 @@ body {
 }
 .nav_item {
     padding: 1rem;
-    border-radius: 12px;  
+    border-radius: 16px;  
     background-color: #212529;
     display: flex;
     align-content: center;
     text-decoration: none;
     color: #fff;
 }
-    .nav_item:hover {
-        color: #ccc;
-        cursor: pointer;
-    }
-    .comment_card {
-        display: flex;
-        gap: 6px;
-    }
+.nof_icon:hover,
+.nav_item:hover {
+    background-color: #ccc;
+    color: #000!important;
+    cursor: pointer;
+}
+.comment_card {
+    display: flex;
+    gap: 6px;
+}
 .comment_card_img_container {
     max-width: 40px;
     max-height: 40px;
@@ -508,7 +515,7 @@ body {
     flex-direction: column;
     gap: 20px;
     padding: 0 16px 16px 16px;
-    margin: 0 -16px -16px -16px;
+    margin: -16px;
     height: 100vh;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -639,6 +646,17 @@ input {
     max-height: 100vh;
     z-index: 100;
 }
+.margin_auto {
+    max-width: 70%;
+    margin: auto;
+}
+.profile_container {
+    background-position: center;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    background-repeat: no-repeat, repeat;
+    background-size: cover;
+}
 .profile_username {
     font-size: 1.5rem;
 }
@@ -728,7 +746,6 @@ input {
     .nof_icon,
     .nav_item {
         justify-content: center;
-        margin-top: 8px;
         padding: 4px;
     }
     .navIcon {
@@ -753,6 +770,10 @@ input {
     }
 }
 @media (max-width: 550px) {
+    .logo_image_container {
+        max-width: 40px;
+        max-height: 40px;
+    }
     .messages_container {
         max-height: 76vh !important;
     }
@@ -841,6 +862,7 @@ input {
         position: fixed;
     }
     .navIcons ul {
+        align-items: center;
         flex-direction: row !important;
     }
     .body_section {
