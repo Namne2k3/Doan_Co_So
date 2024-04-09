@@ -115,4 +115,5 @@ using (var scope = app.Services.CreateScope())
 
     }
 }
+app.MapHub<CallHub>("/meeting");
 app.Run();

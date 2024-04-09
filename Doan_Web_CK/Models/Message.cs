@@ -20,5 +20,8 @@ namespace Doan_Web_CK.Models
 
         public int ChatRoomId { get; set; }
         public ChatRoom? ChatRoom { get; set; }
+
+        public string? Type { get; set; }
+        public string? connectionRoomCall { get; set; }
     }
 }

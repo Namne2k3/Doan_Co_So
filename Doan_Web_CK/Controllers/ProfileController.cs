@@ -361,10 +361,6 @@ namespace Doan_Web_CK.Controllers
 
             await _accountRepository.AddNofiticationAsync(friend, nofitication);
 
-            //< div >
-            //    < a class="btn btn-outline-light disabled">Requested</a>
-            //</div>
-
             newHtml.Append("<div>");
             newHtml.Append("<a class=\"btn btn-outline-light disabled\">Requested</a>");
             newHtml.Append("</div>");
@@ -375,6 +371,40 @@ namespace Doan_Web_CK.Controllers
                 newFriendShip = newFriendShip.ToString(),
                 newHtml = newCommentsHtmlString
             });
+        }
+
+        public async Task<IActionResult> AcceptFriend(string userId, string friendId)
+        {
+            var friendShips = await _friendShipRepository.GetAllAsync();
+            var nofs = await _notifiticationRepository.GetAllNotifitions();
+
+            var finded = friendShips.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId && p.IsConfirmed == false);
+            var findedNof = nofs.SingleOrDefault(p => p.SenderAccountId == userId && p.RecieveAccountId == friendId || p.SenderAccountId == friendId && p.RecieveAccountId == userId && p.Type == "Addfriend");
+
+            if (finded != null)
+            {
+                finded.IsConfirmed = true;
+                await _friendShipRepository.UpdateAsync(finded);
+
+                var chatroom = new ChatRoom
+                {
+                    roomName = finded.User.UserName,
+                    User = finded.Friend,
+                    UserId = userId,
+                    FriendId = finded.UserId,
+                    Friend = finded.User,
+                    Messages = new List<Message>(),
+                    ConnectionRoomCall = Guid.NewGuid().ToString()
+                };
+
+                await _chatRoomRepository.AddAsync(chatroom);
+
+                if (findedNof != null)
+                {
+                    await _notifiticationRepository.DeleteAsync(findedNof.Id);
+                }
+            }
+            return RedirectToAction("Index", new { id = friendId });
         }
 
         [HttpGet]
@@ -401,6 +431,7 @@ namespace Doan_Web_CK.Controllers
                     FriendId = finded.UserId,
                     Friend = finded.User,
                     Messages = new List<Message>(),
+                    ConnectionRoomCall = Guid.NewGuid().ToString()
                 };
 
                 await _chatRoomRepository.AddAsync(chatroom);
@@ -420,8 +451,23 @@ namespace Doan_Web_CK.Controllers
                 message = "Not found user"
             });
         }
+        public async Task<bool> IsBeingRequestedAsync(string currentUserId, string accountId)
+        {
+            var friendships = await _friendShipRepository.GetAllAsync();
+            var finded = friendships.SingleOrDefault(p => p.FriendId == currentUserId && p.UserId == accountId);
+            if (finded != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        public bool IsBeingRequested(string currentUserId, string accountId)
+        {
+            var task = IsBeingRequestedAsync(currentUserId, accountId);
+            task.Wait();
+            return task.Result;
+        }
         public async Task<IActionResult> Index(string id)
-
         {
             var user = await _userManager.GetUserAsync(User);
             var account = await _accountRepository.GetByIdAsync(user?.Id);
@@ -448,12 +494,13 @@ namespace Doan_Web_CK.Controllers
             ViewBag.GetUserName = new Func<string, string>(GetUserName);
             ViewBag.IsRequested = new Func<string, string, bool>(IsRequested);
             ViewBag.GetAllNofOfUser = new Func<string, IEnumerable<Nofitication>>(GetAllNofOfUser);
+            ViewBag.IsBeingRequested = new Func<string, string, bool>(IsBeingRequested);
             return View();
         }
         public async Task<bool> IsRequestedAsync(string userId, string friendId)
         {
             var friendships = await _friendShipRepository.GetAllAsync();
-            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId && p.IsConfirmed == false);
+            var finded = friendships.SingleOrDefault(p => p.UserId == userId && p.FriendId == friendId || p.UserId == friendId && p.FriendId == userId && p.IsConfirmed == false);
             if (finded != null)
             {
                 return true;

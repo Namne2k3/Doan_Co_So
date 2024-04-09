@@ -10,7 +10,7 @@
     var currentUser = ViewBag?.CurrentUser;
     var MyBlogs = ViewBag?.MyBlogs;
 }
-<div class="d-flex gap-4">
+<div class="d-flex gap-4 justify-content-center">
     <div class="body_container" style="width: 75%">
         <h1>WebCommun</h1>
         @if ( currentUser != null )
@@ -141,7 +141,14 @@
                                                             }
                                                             else
                                                             {
-                                                                <a class="btn btn-dark disabled">Requested</a>
+                                                                if (ViewBag.IsBeingRequested(currentUser?.Id, item.AccountId) == true)
+                                                                {
+                                                                    <a asp-route-userId="@currentUser?.Id" asp-route-friendId="@item.AccountId" asp-action="AcceptFriend" asp-controller="Profile" class="btn btn-dark">Accept</a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a class="btn btn-outline-light disabled">Requested</a>
+                                                                }
                                                             }
                                                         }
                                                     </div>

@@ -6,7 +6,9 @@
     ViewData["Title"] = "Chat";
     var currentUser = ViewBag.currentUser;
     var currentChatroom = ViewBag.currentChatRoom;
+    var connectionRoomCall = Guid.NewGuid();
 }
+
 <div class="body_container">
     <div class="message_section_container">
         <div class="chatroom_container">
@@ -65,6 +67,12 @@
                             </div>
                         </div>
                     }
+
+                    <div>
+                        <a onclick="handleSendCallMessage('@connectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@connectionRoomCall" class="btn btn-outline-light">
+                            <i class="bi bi-telephone"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div id="messages_display_container" class="messages_display_container">
@@ -79,7 +87,15 @@
                                         <div class="message_item_img_container">
                                             <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
                                         </div>
-                                        <p>@ms.Text</p>
+                                        <p>
+                                            @ms.Text
+                                            @if (ms.Type != null)
+                                            {
+                                                <a onclick="handleSendCallMessage('@ms.connectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@ms.connectionRoomCall" class="btn btn-outline-light call_icon">
+                                                    <i class="bi bi-telephone-outbound"></i>
+                                                </a>
+                                            }
+                                        </p>
                                     </div>
                                     <p style="text-align: right;">@ms.Time</p>
                                 </div>
@@ -91,7 +107,15 @@
                                         <div class="message_item_img_container">
                                             <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
                                         </div>
-                                        <p>@ms.Text</p>
+                                        <p>
+                                            @ms.Text
+                                            @if (ms.Type != null)
+                                            {
+                                                <a onclick="handleSendCallMessage('@ms.connectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@ms.connectionRoomCall" class="btn btn-outline-light call_icon">
+                                                    <i class="bi bi-telephone-outbound"></i>
+                                                </a>
+                                            }
+                                        </p>
                                     </div>
                                     <p style="text-align: left;">@ms.Time</p>
                                 </div>
@@ -117,7 +141,7 @@
 </div>
 @section NavContent {
     <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
-        <div class="">
+        <div class="nav_item">
             <div class="logo_container d-flex gap-2 w-100 justify-content-center">
                 <div class="logo_image_container">
                     <img src="/images/logo_2.png" class="logo_image" />
@@ -129,7 +153,7 @@
             <div class="navIcon text-center">
                 <i class="icon bi bi-house-door-fill"></i>
             </div>
-            <div class="navTitle w-75 text-start my-auto">
+            <div class="navTitle w-75 fs-4 text-start my-auto">
                 Blogs
             </div>
         </a>
@@ -139,7 +163,7 @@
                 <div class="navIcon text-center">
                     <i class="icon bi bi-people-fill"></i>
                 </div>
-                <div class="navTitle w-75 text-start my-auto">
+                <div class="navTitle w-75 fs-4 text-start my-auto">
                     Friends
                 </div>
             </a>
@@ -148,7 +172,7 @@
                 <div id="nof_icon_container">
                     <a asp-action="Nofitications" asp-controller="Blog" id="navNofitication" class="nof_icon text-center">
                         <i class="navIcon icon bi bi-bell-fill"></i>
-                        <p class="navTitle w-75 text-start my-auto">Nofitications</p>
+                        <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
                     </a>
                 </div>
                 <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
@@ -215,7 +239,6 @@
                                         </div>
                                         break;
                                     default:
-
                                         break;
                                 }
                             }
@@ -225,20 +248,20 @@
             </div>
         }
         <a asp-controller="Chat" asp-action="Index" class="nav_item">
-            @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
+            
             <div class="navIcon text-center">
                 <i class="icon bi bi-wechat"></i>
             </div>
-            <div class="navTitle w-75 text-start my-auto">
+            <div class="navTitle w-75 fs-4 text-start my-auto">
                 Messages
             </div>
         </a>
         <a asp-controller="Profile" asp-action="Index" class="nav_item">
-            @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
+            
             <div class="navIcon text-center">
                 <i class="icon bi bi-person-circle"></i>
             </div>
-            <div class="navTitle w-75 text-start my-auto">
+            <div class="navTitle w-75 fs-4 text-start my-auto">
                 Profile
             </div>
         </a>

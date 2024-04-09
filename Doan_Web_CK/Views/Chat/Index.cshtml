@@ -6,6 +6,7 @@
     ViewData["Title"] = "Chat";
     var currentUser = ViewBag.currentUser;
     var currentChatroom = ViewBag.currentChatRoom;
+    
 }
 
 <div class="body_container">
@@ -65,6 +66,12 @@
                             </div>
                         </div>
                     }
+
+                    <div>
+                        <a onclick="handleSendCallMessage('@currentChatroom.ConnectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@currentChatroom.ConnectionRoomCall" class="btn btn-outline-light">
+                            <i class="bi bi-telephone"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <div id="messages_display_container" class="messages_display_container">
@@ -79,7 +86,15 @@
                                         <div class="message_item_img_container">
                                             <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
                                         </div>
-                                        <p>@ms.Text</p>
+                                        <p>
+                                            @ms.Text
+                                            @if ( ms.Type != null )
+                                            {
+                                                <a asp-action="Room" asp-controller="Call" asp-route-roomId="@ms.connectionRoomCall" class="btn btn-outline-light call_icon">
+                                                    <i class="bi bi-telephone-outbound"></i>
+                                                </a>
+                                            }
+                                        </p>
                                     </div>
                                     <p style="text-align: right;" >@ms.Time</p>
                                 </div>
@@ -90,7 +105,15 @@
                                         <div class="message_item_img_container">
                                             <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
                                         </div>
-                                        <p>@ms.Text</p>
+                                        <p>
+                                            @ms.Text
+                                            @if (ms.Type != null)
+                                            {
+                                                <a asp-action="Room" asp-controller="Call" asp-route-roomId="@ms.connectionRoomCall" class="btn btn-outline-light call_icon">
+                                                    <i class="bi bi-telephone-outbound"></i>
+                                                </a>
+                                            }
+                                        </p>
                                     </div>
                                     <p style="text-align: left;">@ms.Time</p>
                                 </div>   
@@ -115,7 +138,7 @@
 </div>
 @section NavContent {
     <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
-        <div class="">
+        <div class="nav_item">
             <div class="logo_container d-flex gap-2 w-100 justify-content-center">
                 <div class="logo_image_container">
                     <img src="/images/logo_2.png" class="logo_image" />

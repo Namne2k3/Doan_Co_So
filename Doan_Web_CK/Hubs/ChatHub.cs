@@ -18,7 +18,36 @@ namespace Doan_Web_CK.Hubs
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
+        public async Task SendCallMessageToUser(string user, string receiverConnectionId, string message, string connectionRoomCall)
+        {
+            if (message != "")
+            {
+                var sender = await _accountRepository.GetByIdAsync(user);
+                var receiver = await _accountRepository.GetByIdAsync(receiverConnectionId);
+                var time = DateTime.Now;
+                var chatroom = await _chatRoomRepository.GetByUsersIdAsync(sender.Id, receiver.Id);
+                if (chatroom != null)
+                {
+                    var newMessage = new Message
+                    {
+                        UserName = sender.UserName,
+                        UserImageUrl = sender.ImageUrl,
+                        Text = message,
+                        Time = DateTime.Now,
+                        userId = sender.Id,
+                        ApplicationUser = sender,
+                        ChatRoomId = chatroom.Id,
+                        Type = "call",
+                        connectionRoomCall = connectionRoomCall,
+                    };
+                    await _chatRoomRepository.AddMessagesAsync(chatroom, newMessage);
+                    time = newMessage.Time;
 
+                    await Clients.User(user).SendAsync("ReceiveMessage", sender.UserName, message, sender.ImageUrl, "right", time.ToString(), newMessage.Type, connectionRoomCall);
+                    await Clients.User(receiverConnectionId).SendAsync("ReceiveMessage", receiver.UserName, message, sender.ImageUrl, "left", time.ToString(), newMessage.Type, connectionRoomCall);
+                }
+            }
+        }
         public async Task SendToUser(string user, string receiverConnectionId, string message)
         {
             if (message != "")

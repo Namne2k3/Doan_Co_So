@@ -97,6 +97,9 @@ namespace Doan_Web_CK.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ConnectionRoomCall")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FriendId")
                         .HasColumnType("nvarchar(450)");
 
@@ -218,12 +221,18 @@ namespace Doan_Web_CK.Migrations
                     b.Property<DateTime>("Time")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("connectionRoomCall")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("userId")

@@ -15,5 +15,7 @@ namespace Doan_Web_CK.Models
         public ApplicationUser? Friend { get; set; }
 
         public List<Message>? Messages { get; set; }
+
+        public string? ConnectionRoomCall { get; set; }
     }
 }

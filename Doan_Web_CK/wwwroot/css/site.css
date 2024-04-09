@@ -8,6 +8,25 @@ html {
     background-color: #212529;
     color: #fff!important;
 }
+.video_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+    border-radius: 12px;
+}
+.video_container video {
+    display: flex;
+    flex: 1;
+    max-width: 49%;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 12px;
+}
+.call_icon {
+    font-size: 10px;
+    margin-left: 4px;
+}
 footer {
     display: none;
 }
@@ -65,7 +84,7 @@ main {
     font-weight: bold;
 }
 .messages_container {
-    max-height: 95vh;
+    height: 95vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -166,7 +185,7 @@ main {
 }
 .message_section_container {
     display: flex;
-    gap: 16px;
+    gap: 8px;
 }
 #update_fail_blog,
 #update_success_blod {
@@ -473,8 +492,8 @@ body {
     gap: 4px;
 }
 .user_photo_comment_container {
-    max-width: 45px;
-    max-height: 45px;
+    width: 45px;
+    height: 45px;
 }
 
 .user_photo_comment {
@@ -576,6 +595,8 @@ body {
     overflow-y: scroll;
     max-height: 100vh;
     scrollbar-width: none;
+    justify-content: center;
+    margin: auto;
 }
 
 .blog_userInfo {
@@ -770,18 +791,22 @@ input {
     }
 }
 @media (max-width: 550px) {
+    .body_container {
+        max-width: 95%!important;
+
+    }
     .logo_image_container {
         max-width: 40px;
         max-height: 40px;
     }
     .messages_container {
-        max-height: 76vh !important;
+        height: 81vh !important;
     }
     footer {
         display: none;
     }
     .main {
-        margin: 12px;
+        margin: 0!important;
     }
     
     .chatroom_card {
@@ -939,7 +964,7 @@ input {
 }
 @media (max-width: 300px) {
     .messages_container {
-        max-height: 72vh!important;
+        height: 78vh!important;
     }
     main {
         margin: 12px !important;
@@ -977,7 +1002,7 @@ input {
         width: 200px;
     }
     .body_section {
-        margin-top: 75px;
+        margin-top: 55px;
     }
 
     #newestBlogCb {
@@ -1002,7 +1027,7 @@ input {
         }
 
     .input_add {
-        max-width: 180px;
+        max-width: 160px!important;
     }
 }
 

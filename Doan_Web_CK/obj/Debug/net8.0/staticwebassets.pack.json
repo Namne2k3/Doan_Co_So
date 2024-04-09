@@ -157,6 +157,74 @@
       "PackagePath": "staticwebassets\\js\\chat.min.js"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\LICENSE",
+      "PackagePath": "staticwebassets\\js\\peerjs"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\README.md",
+      "PackagePath": "staticwebassets\\js\\peerjs\\README.md"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\bundler.cjs",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\bundler.cjs"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\bundler.cjs.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\bundler.cjs.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\bundler.mjs",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\bundler.mjs"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\bundler.mjs.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\bundler.mjs.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\peerjs.js",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\peerjs.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\peerjs.js.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\peerjs.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\peerjs.min.js",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\peerjs.min.js"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\peerjs.min.js.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\peerjs.min.js.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\serializer.cbor.mjs",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\serializer.cbor.mjs"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\serializer.cbor.mjs.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\serializer.cbor.mjs.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\serializer.msgpack.mjs",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\serializer.msgpack.mjs"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\serializer.msgpack.mjs.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\serializer.msgpack.mjs.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\types.d.ts",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\types.d.ts"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\dist\\types.d.ts.map",
+      "PackagePath": "staticwebassets\\js\\peerjs\\dist\\types.d.ts.map"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\peerjs\\package.json",
+      "PackagePath": "staticwebassets\\js\\peerjs\\package.json"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\signalr\\README.md",
       "PackagePath": "staticwebassets\\js\\signalr\\README.md"
     },

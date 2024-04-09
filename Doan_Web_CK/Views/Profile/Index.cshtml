@@ -57,16 +57,24 @@
                                 </div>
                             } else
                             {
-                                
                                 <div>
                                     <a onclick="handleAddFriendProfile('@currentUser.Id', '@account.Id')" class="btn btn-outline-light">Add friend</a>
                                 </div>
                             }
                         } else
                         {
-                            <div>
-                                <a class="btn btn-outline-light disabled">Requested</a>
-                            </div>   
+                            if (ViewBag.IsBeingRequested(currentUser.Id, account.Id) == true )
+                            {
+                                <div>
+                                    <a asp-route-userId="@currentUser.Id" asp-route-friendId="@account.Id" asp-action="AcceptFriend" asp-controller="Profile" class="btn btn-outline-light">Accept Friend Request</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <a class="btn btn-outline-light disabled">Requested</a>
+                                </div>   
+                            }
                         }
                     }
                 </div>
@@ -261,7 +269,7 @@
 </div>
 @section NavContent {
     <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
-        <div class="">
+        <div class="nav_item">
             <div class="logo_container d-flex gap-2 w-100 justify-content-center">
                 <div class="logo_image_container">
                     <img src="/images/logo_2.png" class="logo_image" />
