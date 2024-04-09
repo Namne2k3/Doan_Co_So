@@ -14,6 +14,13 @@ namespace Doan_Web_CK.Hubs
             _messageRepository = messageRepository;
             _accountRepository = accountRepository;
         }
+        public async Task SendToastMessage(string userId, string receiverId, string connectionRoomCall)
+        {
+            var account = await _accountRepository.GetByIdAsync(userId);
+            var receiver = await _accountRepository.GetByIdAsync(receiverId);
+
+            await Clients.User(receiver.Id).SendAsync("ReceiveToastMessage", account.UserName, connectionRoomCall, account.ImageUrl);
+        }
         public async Task SendMessage(string user, string message)
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);

@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="d-flex flex-column vh-100">
-        <div class="nav_container h-100">
+        <div class="nav_container h-100 position-relative">
             <div class="navIcons col-md-2 bg-dark justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
                 @RenderSection("NavContent", required: false)
                 @if (!SignInManager.IsSignedIn(User))
@@ -28,6 +28,23 @@
                 <main class="main" role="main" class="pb-3">
                     @RenderBody()
                 </main>
+            </div>
+            <!-- Flexbox container for aligning the toasts -->
+            <div id="toast_container" aria-live="polite" aria-atomic="true" class="position-fixed w-100 toast_container">
+
+                <!-- Then put toasts within -->
+                @* <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <img src="" class="rounded me-2" alt="...">
+                        <strong class="me-auto">Somebody has open a call message</strong>
+                        <small>11 mins ago</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <button class="btn btn-outline-dark">Join Call</button>
+                        <button class="btn btn-outline-danger">Cancel</button>
+                    </div>
+                </div> *@
             </div>
         </div>
     </div>

@@ -3,10 +3,21 @@ html {
     scroll-behavior: smooth;
     height: 100vh;
 }
+.toast_container {
+    bottom: 12px;
+    left: 12px;
+    z-index: 100;
+}
+.toast-header img {
+    border-radius: 100%;
+    object-fit: cover;
+    width: 45px;
+    height: 45px;
+}
 .nav_item:first-child:hover {
     cursor: default;
     background-color: #212529;
-    color: #fff!important;
+    color: #fff !important;
 }
 .video_container {
     display: flex;

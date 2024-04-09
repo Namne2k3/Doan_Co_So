@@ -196,6 +196,66 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
     }
 });
 
+connection.on('ReceiveToastMessage', function (userName, connectionRoomCall, userImage) {
+    // Tạo phần tử div chứa toast
+    const toastDiv = document.createElement('div');
+    toastDiv.classList.add('toast', 'show');
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    // Tạo phần tử div chứa header
+    const headerDiv = document.createElement('div');
+    headerDiv.classList.add('toast-header');
+
+    // Tạo ảnh trong header (nếu cần)
+    const img = document.createElement('img');
+    img.classList.add('rounded', 'me-2', 'mw-100');
+    img.setAttribute('src', userImage);
+    img.setAttribute('alt', 'user image');
+    headerDiv.appendChild(img);
+
+    // Tạo phần tử strong chứa nội dung tiêu đề
+    const strong = document.createElement('strong');
+    strong.classList.add('me-auto');
+    strong.textContent = `${userName} has open a call message`;
+    headerDiv.appendChild(strong);
+
+    // Tạo nút close
+    const closeButton = document.createElement('button');
+    closeButton.setAttribute('type', 'button');
+    closeButton.classList.add('btn-close');
+    closeButton.setAttribute('data-bs-dismiss', 'toast');
+    closeButton.setAttribute('aria-label', 'Close');
+    headerDiv.appendChild(closeButton);
+
+    // Thêm header vào toast
+    toastDiv.appendChild(headerDiv);
+
+    // Tạo phần tử div chứa body
+    const bodyDiv = document.createElement('div');
+    bodyDiv.classList.add('toast-body');
+
+    // Tạo nút "Join Call"
+    const joinCallButton = document.createElement('a');
+    joinCallButton.classList.add('btn', 'btn-outline-dark');
+    joinCallButton.href = `/call/${connectionRoomCall}`
+    joinCallButton.textContent = 'Join Call';
+    bodyDiv.appendChild(joinCallButton);
+
+    // Thêm body vào toast
+    toastDiv.appendChild(bodyDiv);
+
+    // Thêm toast vào DOM
+    document.getElementById("toast_container").appendChild(toastDiv)
+})
+function handleAddToastMessage(userId, receiverId, connectionRoomCall) {
+   
+    connection.invoke("SendToastMessage", userId, receiverId, connectionRoomCall).catch(function (err) {
+        return console.error(err.toString());
+    })
+}
+
 function handleSendCallMessage(connectionRoomCall, userName) {
     var user = document.getElementById("userInput").value;
     var receiverConnectionId = document.getElementById("receiverId").value;
@@ -204,6 +264,7 @@ function handleSendCallMessage(connectionRoomCall, userName) {
         connection.invoke("SendCallMessageToUser", user, receiverConnectionId, message, connectionRoomCall).catch(function (err) {
             return console.error(err.toString());
         });
+        handleAddToastMessage(user, receiverConnectionId, connectionRoomCall)
     }
     window.location.href = `/call/${connectionRoomCall}`
 }
