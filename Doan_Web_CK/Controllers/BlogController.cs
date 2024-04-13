@@ -999,7 +999,7 @@ namespace Doan_Web_CK.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Admin, Member")]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Add(Blog blog, IFormFile BlogImageUrl)
         {

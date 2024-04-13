@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ikPFrns6r/NERQl23zSxELA+cAQA9MWIugn8XkIcHGlWFjSrMgr0Yka3g3XDJzaBpFSABuvFAtPR1MPklDxVSw==",
+  "dgSpecHash": "jMnvyT+Yu34Jmcrhwf8xoLhfhpPjCablus9sIWeBaEmrZnmFRoKx7wDL6luHR7ZD7RJ41Z14RwxrpVMD6OrpTQ==",
   "success": true,
   "projectFilePath": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Doan_Web_CK.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,8 @@
     "C:\\Users\\nhpn2\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\nhpn2\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\nhpn2\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\nhpn2\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\8.0.4\\microsoft.aspnetcore.authentication.facebook.8.0.4.nupkg.sha512",
+    "C:\\Users\\nhpn2\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\8.0.4\\microsoft.aspnetcore.authentication.google.8.0.4.nupkg.sha512",
     "C:\\Users\\nhpn2\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\8.0.3\\microsoft.aspnetcore.connections.abstractions.8.0.3.nupkg.sha512",
     "C:\\Users\\nhpn2\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.3\\microsoft.aspnetcore.cryptography.internal.8.0.3.nupkg.sha512",
     "C:\\Users\\nhpn2\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.3\\microsoft.aspnetcore.cryptography.keyderivation.8.0.3.nupkg.sha512",

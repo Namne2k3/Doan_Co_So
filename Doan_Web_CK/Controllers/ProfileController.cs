@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Doan_Web_CK.Controllers
 {
-    [Authorize(Roles = "Member, Admin")]
+    [Authorize]
     public class ProfileController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

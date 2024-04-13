@@ -40,7 +40,7 @@ namespace Doan_Web_CK.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(string id)
         {
             var account = await _context.ApplicationUsers.FindAsync(id);
             _context.ApplicationUsers.Remove(account);
@@ -53,7 +53,6 @@ namespace Doan_Web_CK.Repository
                 .Include(x => x.Blogs)
                 .Include(x => x.Friendships)
                 .Include(x => x.Nofitications)
-                .Include(x => x.Messages)
                 .ToListAsync();
         }
 
@@ -63,7 +62,6 @@ namespace Doan_Web_CK.Repository
                 .Include(x => x.Blogs)
                 .Include(x => x.Friendships)
                 .Include(x => x.Nofitications)
-                .Include(x => x.Messages)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 

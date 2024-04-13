@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Doan_Web_CK.Controllers
 {
-    [Authorize(Roles = "Member, Admin")]
+    [Authorize]
     public class ChatController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

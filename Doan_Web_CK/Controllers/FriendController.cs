@@ -1,11 +1,13 @@
 ﻿using Doan_Web_CK.Models;
 using Doan_Web_CK.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
 namespace Doan_Web_CK.Controllers
 {
+    [Authorize]
     public class FriendController : Controller
     {
         private readonly IFriendShipRepository _friendShipRepository;

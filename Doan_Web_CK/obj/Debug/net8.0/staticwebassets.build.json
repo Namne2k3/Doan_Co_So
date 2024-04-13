@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OB/UIEsIuLJBWemqspTsdrfdVkqyTSkSSTCTTHm9SnM=",
+  "Hash": "v1OG5bbOLlGgQkkqGoV+CGoUK+VD0NbtpcmIMJONiQE=",
   "Source": "Doan_Web_CK",
   "BasePath": "_content/Doan_Web_CK",
   "Mode": "Default",
@@ -1290,6 +1290,25 @@
       "OriginalItemSpec": "wwwroot\\images\\2024-cdc-issued-alert-u-791532-5624-8782-1711775510.png"
     },
     {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\a1-2752-1712909280.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/a1-2752-1712909280.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a1-2752-1712909280.jpg"
+    },
+    {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\ai-coding-1710410299-6906-1710410348.jpg",
       "SourceId": "Doan_Web_CK",
       "SourceType": "Discovered",
@@ -1347,6 +1366,25 @@
       "OriginalItemSpec": "wwwroot\\images\\cdn-vox-cdn-7896-1710813178.png"
     },
     {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\DSCF0894-5532-1712845905.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/DSCF0894-5532-1712845905.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\DSCF0894-5532-1712845905.jpg"
+    },
+    {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\E4NXNZtVkAUQTP1.jpg",
       "SourceId": "Doan_Web_CK",
       "SourceType": "Discovered",
@@ -1383,6 +1421,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\huang-8025-1711281340.jpg"
+    },
+    {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\iphone-4534-1712890018.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/iphone-4534-1712890018.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\iphone-4534-1712890018.jpg"
     },
     {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\jim-5002-1711350034.jpg",
@@ -1668,6 +1725,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\tiktok-10-9960-1646278205-3630-1710600720.png"
+    },
+    {
+      "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\TikTok-2242-1712647094.jpg",
+      "SourceId": "Doan_Web_CK",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\",
+      "BasePath": "_content/Doan_Web_CK",
+      "RelativePath": "images/TikTok-2242-1712647094.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\TikTok-2242-1712647094.jpg"
     },
     {
       "Identity": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\top1-8768-1710951272.jpg",

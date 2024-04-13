@@ -32,10 +32,22 @@ builder.Services.AddScoped<ILikeRepository, EFLikeRepository>();
 builder.Services.AddScoped<IFriendShipRepository, EFFriendShipRepository>();
 builder.Services.AddScoped<IMessageRepository, EFMessageRepository>();
 builder.Services.AddScoped<IChatRoomRepository, EFChatRoomRepository>();
+builder.Services.AddTransient<ISenderEmail, EmailSender>();
 
 builder.Services.AddLogging(builder => builder.AddConsole());
 
+builder.Services.AddAuthentication()
+    .AddFacebook(op =>
+    {
+        op.ClientId = "2399387130253931";
+        op.ClientSecret = "e93ff81ddb2550deae351b2c79a616d5";
+    })
+    .AddGoogle(options =>
+    {
 
+        options.ClientId = "144668207253-4mn5jc9icnbkvu0uv3a5ml4vchoofit4.apps.googleusercontent.com";
+        options.ClientSecret = "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";
+    });
 
 var app = builder.Build();
 

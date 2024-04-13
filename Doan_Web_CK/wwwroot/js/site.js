@@ -1,4 +1,92 @@
-﻿function handleAddFriendProfile(userId, friendId) {
+﻿function createTableRow(item) {
+
+    var row = document.createElement("tr");
+
+    var idCell = document.createElement("td");
+    idCell.textContent = item.Id;
+    row.appendChild(idCell);
+
+    var titleCell = document.createElement("td");
+    titleCell.textContent = item.Title;
+    row.appendChild(titleCell);
+
+    var accountIdCell = document.createElement("td");
+    accountIdCell.textContent = item.AccountId;
+    row.appendChild(accountIdCell);
+
+    var isAcceptedCell = document.createElement("td");
+    isAcceptedCell.textContent = item.IsAccepted;
+    row.appendChild(isAcceptedCell);
+
+    var publishDateCell = document.createElement("td");
+    publishDateCell.textContent = item.PublishDate;
+    row.appendChild(publishDateCell);
+
+    var likesCell = document.createElement("td");
+    likesCell.textContent = item.Likes;
+    row.appendChild(likesCell);
+
+    var actionsCell = document.createElement("td");
+    actionsCell.classList.add("d-flex", "flex-column", "gap-2");
+
+    // Tạo button Accept hoặc UnAccept tùy thuộc vào giá trị của item.IsAccepted
+    var acceptForm = document.createElement("form");
+    acceptForm.action = item.IsAccepted ? "/Admin/BlogAdmin/UnAccept" : "/Admin/BlogAdmin/Accept";
+    acceptForm.method = "post";
+    var acceptButton = document.createElement("button");
+    acceptButton.type = "submit";
+    acceptButton.classList.add("w-100", "btn", "btn-outline-light");
+    acceptButton.textContent = item.IsAccepted ? "UnAccept" : "Accept";
+    acceptForm.appendChild(acceptButton);
+    actionsCell.appendChild(acceptForm);
+
+    // Tạo button Details
+    var detailsLink = document.createElement("a");
+    detailsLink.href = "/Admin/BlogAdmin/Details/" + item.Id;
+    detailsLink.classList.add("btn", "btn-outline-light");
+    detailsLink.textContent = "Details";
+    actionsCell.appendChild(detailsLink);
+
+    // Tạo button Delete và Modal
+    var deleteButton = document.createElement("button");
+    deleteButton.type = "button";
+    deleteButton.classList.add("btn", "btn-outline-light");
+    deleteButton.dataset.bsToggle = "modal";
+    deleteButton.dataset.bsTarget = "#exampleModal";
+    deleteButton.textContent = "Delete";
+    actionsCell.appendChild(deleteButton);
+
+    // Thêm cell chứa các button vào row
+    row.appendChild(actionsCell);
+
+    // Trả về row đã tạo
+    return row;
+}
+var tbody = document.getElementById('tbody');
+function handleSearchBlog(event) {
+    let search = event.target.value
+    fetch(`/Admin/BlogAdmin/GetAllBlogAsync?search=${search}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data)
+            if (tbody) {
+                tbody.innerHTML = '';
+                data.blogs.forEach(item => {
+                    tbody.appendChild(createTableRow(item));
+                });
+            }
+
+        })
+        .catch(error => {
+            console.log('There was a problem with the fetch operation:', error);
+        });
+}
+function handleAddFriendProfile(userId, friendId) {
 
     fetch(`/Profile/AddFriend?form_add_friend_userid=${userId}&form_add_friend_friendid=${friendId}`)
         .then(response => {
@@ -28,7 +116,7 @@ if (messages_display_container) {
 }
 
 function handleToggleMessages(chatroomId) {
-    
+
 }
 
 $(document).ready(function () {
@@ -471,7 +559,7 @@ function handleLike(id) {
     handleToggleLike(id)
 }
 
-if (document.querySelector("#profile_photo_input") != null ) {
+if (document.querySelector("#profile_photo_input") != null) {
     document.querySelector("#profile_photo_input").addEventListener("change", handlePreviewPhoto);
 
     if (!document.getElementById("profile_photo_input").value != "") {

@@ -15,5 +15,6 @@ namespace Doan_Web_CK.Repository
         Task<IEnumerable<ChatRoom>> GetAllChatRoomByUserIdAsync(string userId);
 
         Task AddMessagesAsync(ChatRoom chatroom, Message message);
+        Task DeleteChatRoomsByUserId(string id);
     }
 }

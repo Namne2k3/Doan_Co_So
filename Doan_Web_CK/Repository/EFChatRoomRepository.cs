@@ -27,6 +27,19 @@ namespace Doan_Web_CK.Repository
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteChatRoomsByUserId(string id)
+        {
+            var chatrooms = await _context.chatRooms.Where(p => p.UserId == id || p.FriendId == id).ToListAsync();
+            if (chatrooms != null)
+            {
+                foreach (var item in chatrooms)
+                {
+                    _context.chatRooms.Remove(item);
+                    await _context.SaveChangesAsync();
+                }
+            }
+        }
+
         public async Task<IEnumerable<ChatRoom>> GetAllAsync()
         {
             return await _context.chatRooms
