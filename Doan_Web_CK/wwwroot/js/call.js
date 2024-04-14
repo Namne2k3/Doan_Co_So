@@ -1,6 +1,46 @@
 let userId = null
 let localStream = null
-
+function handleChangeIconVideoActions(type) {
+    if (type == 'mic') {
+        var element = document.getElementById('mic_icon');
+        if (element) {
+            if (element.classList.contains('bi-mic-fill')) {
+                element.classList.remove("bi-mic-fill")
+                element.classList.add("bi-mic-mute-fill")
+            } else {
+                element.classList.remove('bi-mic-mute-fill')
+                element.classList.add('bi-mic-fill')
+            }
+            handleToggleMicro()
+        }
+    }
+    if (type == 'video') {
+        var element = document.getElementById('video_icon');
+        if (element) {
+            if (element.classList.contains('bi-camera-video-fill')) {
+                element.classList.remove("bi-camera-video-fill")
+                element.classList.add("bi-camera-video-off-fill")
+            } else {
+                element.classList.remove('bi-camera-video-off-fill')
+                element.classList.add('bi-camera-video-fill')
+            }
+            handleToogleCamera()
+        }
+    }
+    if (type == 'volume') {
+        var element = document.getElementById('volume_icon');
+        if (element) {
+            if (element.classList.contains('bi-volume-up-fill')) {
+                element.classList.remove("bi-volume-up-fill")
+                element.classList.add("bi-volume-mute-fill")
+            } else {
+                element.classList.remove('bi-volume-mute-fill')
+                element.classList.add('bi-volume-up-fill')
+            }
+            handleToggleAudio()
+        }
+    }
+}
 const Peers = {}
 
 //2. khoi tao ket noi toi signalr
@@ -41,7 +81,7 @@ myVideo.muted = false;
 // ( hàm này chỉ được gọi lần đầu tiên )
 navigator.mediaDevices.getUserMedia({
     audio: true,
-    video: true
+    video: true,
 }).then(stream => {
     addVideoStream(myVideo, stream)
     localStream = stream
@@ -88,10 +128,40 @@ myPeer.on('call', call => {
     })
     Peers[userId] = call
 })
+
+const handleToggleMicro = () => {
+    const tracks = localStream.getAudioTracks();
+
+    // Đảm bảo rằng có track audio tồn tại
+    if (tracks.length > 0) {
+        // Lặp qua từng track và chuyển đổi trạng thái enabled
+        tracks.forEach(track => {
+            // Đảm bảo rằng track có hỗ trợ set enabled
+            if ('enabled' in track) {
+                track.enabled = !track.enabled; // Đảo ngược trạng thái của track
+            }
+        });
+    }
+}
+
+const handleToogleCamera = () => {
+    const tracks = localStream.getVideoTracks();
+
+    // Đảm bảo rằng có track video tồn tại
+    if (tracks.length > 0) {
+        // Lặp qua từng track và chuyển đổi trạng thái enabled
+        tracks.forEach(track => {
+            // Đảm bảo rằng track có hỗ trợ set enabled
+            if ('enabled' in track) {
+                track.enabled = !track.enabled; // Đảo ngược trạng thái của track
+            }
+        });
+    }
+}
 const addVideoStream = (video, stream) => {
     video.srcObject = stream;
     video.addEventListener('loadedmetadata', () => {
-        video.muted = true;
+        video.muted = false;
         video.audio = false;
         video.play()
     })

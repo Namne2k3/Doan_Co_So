@@ -1,42 +1,4 @@
-﻿function handleChangeIconVideoActions(type) {
-    if (type === 'mic') {
-        var element = document.getElementById('mic_icon');
-        if (element) {
-            if (element.classList.contains('bi-mic-fill')) {
-                element.classList.remove("bi-mic-fill")
-                element.classList.add("bi-mic-mute-fill")
-            } else {
-                element.classList.remove('bi-mic-mute-fill')
-                element.classList.add('bi-mic-fill')
-            }
-        }
-    }
-    if (type == 'video') {
-        var element = document.getElementById('video_icon');
-        if (element) {
-            if (element.classList.contains('bi-camera-video-fill')) {
-                element.classList.remove("bi-camera-video-fill")
-                element.classList.add("bi-camera-video-off-fill")
-            } else {
-                element.classList.remove('bi-camera-video-off-fill')
-                element.classList.add('bi-camera-video-fill')
-            }
-        }
-    }
-    if (type === 'volume') {
-        var element = document.getElementById('volume_icon');
-        if (element) {
-            if (element.classList.contains('bi-volume-up-fill')) {
-                element.classList.remove("bi-volume-up-fill")
-                element.classList.add("bi-volume-mute-fill")
-            } else {
-                element.classList.remove('bi-volume-mute-fill')
-                element.classList.add('bi-volume-up-fill')
-            }
-        }
-    }
-}
-
+﻿
 function createTableRow(item) {
 
     var row = document.createElement("tr");

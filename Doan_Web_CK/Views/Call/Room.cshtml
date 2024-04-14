@@ -14,21 +14,21 @@
 
     </div>
     <div class="video_actions">
-    <div class="video_action_item">
-        <a class="btn btn-outline-light">
-            <i class="bi bi-mic-fill"></i>
-        </a>
-    </div>
-    <div class="video_action_item">
-        <a class="btn btn-outline-light">
-            <i class="bi bi-camera-video-fill"></i>
-        </a>
-    </div>
-    <div class="video_action_item">
-        <a class="btn btn-outline-light">
-            <i class="bi bi-volume-up-fill"></i>
-        </a>
-    </div>
+        <div class="video_action_item">
+            <a class="btn btn-outline-light">
+                <i class="bi bi-mic-fill"></i>
+            </a>
+        </div>
+        <div class="video_action_item">
+            <a class="btn btn-outline-light">
+                <i class="bi bi-camera-video-fill"></i>
+            </a>
+        </div>
+        @* <div class="video_action_item">
+            <a class="btn btn-outline-light">
+                <i class="bi bi-volume-up-fill"></i>
+            </a>
+        </div> *@
     </div>
     @if ( currentChatroom != null )
     {
@@ -126,11 +126,11 @@
                 <i id="video_icon" class="bi bi-camera-video-fill"></i>
             </a>
         </div>
-        <div class="video_action_item">
+        @* <div class="video_action_item">
             <a onclick="handleChangeIconVideoActions('volume')" class="btn btn-outline-light">
                 <i id="volume_icon" class="bi bi-volume-up-fill"></i>
             </a>
-        </div>
+        </div> *@
     </div>
 </div>
 @section NavContent {
