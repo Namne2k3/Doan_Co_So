@@ -7,131 +7,132 @@
 @{
     ViewData["Title"] = "CallRoom";
     var currentUser = ViewBag?.CurrentUser;
+    var currentChatroom = ViewBag.currentChatroom;
 }
-@* <h1 style="text-align: center">@ViewBag.roomId</h1> *@
+<div class="room_call_container">
+    <div class="video_container" video-grid>
 
-<div class="video_container" video-grid></div>
-<script>
-    const ROOM_ID = '@ViewBag.roomId'
-    let userId = null
-    let localStream = null
-
-    const Peers = {}
-
-    //2. khoi tao ket noi toi signalr
-    var callconnection = new signalR.HubConnectionBuilder()
-        .withUrl("/meeting").build()
-
-
-    // khoi chay ket noi toi signalr hub
-    const startSignalR = async () => {
-        await callconnection.start();
-        await callconnection.invoke("JoinRoom", ROOM_ID, userId)
-
-        callconnection.on('user-connected', userId => {
-            console.log(`User connected: ${userId}`)
-        })
+    </div>
+    <div class="video_actions">
+    <div class="video_action_item">
+        <a class="btn btn-outline-light">
+            <i class="bi bi-mic-fill"></i>
+        </a>
+    </div>
+    <div class="video_action_item">
+        <a class="btn btn-outline-light">
+            <i class="bi bi-camera-video-fill"></i>
+        </a>
+    </div>
+    <div class="video_action_item">
+        <a class="btn btn-outline-light">
+            <i class="bi bi-volume-up-fill"></i>
+        </a>
+    </div>
+    </div>
+    @if ( currentChatroom != null )
+    {
+        <div class="messages_container messages_container_room_call">
+            @if (currentUser.Id == currentChatroom?.UserId)
+                {
+                    <div class="messages_info_container_flex">
+                        <div class="messages_info_img_container">
+                            <img src="@currentChatroom?.Friend?.ImageUrl" alt="messages_info_img" />
+                        </div>
+                        <div class="messages_info">
+                            <a asp-action="Index" asp-controller="Profile" asp-route-id="@currentChatroom?.Friend?.Id" asp->@currentChatroom?.Friend?.UserName</a>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="messages_info_container_flex">
+                        <div class="messages_info_img_container">
+                            <img src="@currentChatroom?.User?.ImageUrl" alt="messages_info_img" />
+                        </div>
+                        <div class="messages_info">
+                            <a asp-action="Index" asp-controller="Profile" asp-route-id="@currentChatroom?.User?.Id" asp->@currentChatroom?.User?.UserName</a>
+                        </div>
+                    </div>
+                }
+            <div id="messages_display_container" class="messages_display_container">
+                @if (currentChatroom?.Messages != null )
+                {
+                    foreach ( var ms in currentChatroom?.Messages )
+                    {
+                        if ( ms.userId == currentUser.Id)
+                        {
+                            <div class="message_item">
+                                <div class="message_item_user_text">
+                                    <div class="message_item_img_container">
+                                        <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
+                                    </div>
+                                    <p class="long_text">
+                                        @ms.Text
+                                        @if ( ms.Type != null )
+                                        {
+                                            <a asp-action="Room" asp-controller="Call" asp-route-roomId="@ms.connectionRoomCall" class="btn btn-outline-light call_icon">
+                                                <i class="bi bi-telephone-outbound"></i>
+                                            </a>
+                                        }
+                                    </p>
+                                </div>
+                                <p style="text-align: right;" >@ms.Time</p>
+                            </div>
+                        } else
+                        {
+                            <div class="message_item">
+                                <div class="message_item_friend_text">
+                                    <div class="message_item_img_container">
+                                        <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
+                                    </div>
+                                    <p>
+                                        @ms.Text
+                                        @if (ms.Type != null)
+                                        {
+                                            <a asp-action="Room" asp-controller="Call" asp-route-roomId="@ms.connectionRoomCall" class="btn btn-outline-light call_icon">
+                                                <i class="bi bi-telephone-outbound"></i>
+                                            </a>
+                                        }
+                                    </p>
+                                </div>
+                                <p style="text-align: left;">@ms.Time</p>
+                            </div>   
+                        }
+                    }
+                }
+            </div>
+            <input id="userInput" value="@currentUser.Id" hidden />
+            @if (currentUser?.Id == currentChatroom?.UserId)
+            {
+                <input id="receiverId" value="@currentChatroom?.FriendId" hidden />
+            } else
+            {
+                <input id="receiverId" value="@currentChatroom?.UserId" hidden />
+            }
+            <div class="message_input_container">
+                <input id="messageInput" onkeypress="handleSendMessage(event)" placeholder="Writing something ... " type="text" class="form-control message_input" />
+            </div>
+        </div>
     }
-
-    //3. khoi tao peer
-    const myPeer = new Peer();
-
-    //4. khoi chay mypeer
-    // hàm này được chạy mỗi khi peer khởi động và có được một id đại diện duy nhất từ máy chủ peerjs
-    myPeer.on('open', id => {
-        userId = id;
-        console.log("Check userId >>> ", userId);
-        const startSignalR = async () => {
-            await callconnection.start();
-            await callconnection.invoke("JoinRoom", ROOM_ID, userId)
-        }
-        startSignalR();
-    })
-
-    // section stream video
-    const videoGrid = document.querySelector('[video-grid]')
-    const myVideo = document.createElement('video')
-    myVideo.muted = false;
-
-    // ( hàm này chỉ được gọi lần đầu tiên )
-    navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: true
-    }).then(stream => {
-        addVideoStream(myVideo, stream)
-        localStream = stream
-    })
-
-    callconnection.on('user-connected', id => {
-
-        // kiểm tra có phải user ban đầu khởi tạo callroom ko
-        // nếu ko thì connect tới user mới
-
-        console.log("userId >>> ", userId)
-        console.log("Id >>> ", id)
-        if (userId === id)
-            return;
-
-        console.log(`User connected: ${id}`)
-        connectNewUser(id, localStream);
-    })
-
-    callconnection.on("user-disconnected", id => {
-        console.log(`User disconnected: ${id}`)
-
-        if (Peers[id])
-            Peers[id].close();
-    })
-
-    // khi có 1 user mới truy cập cuộc gọi
-    // hàm on call này sẽ được kích hoạt
-    // tác dụng để cho phép những hình ảnh của ta được truyền tới user mới
-    // từ đó user mới có thể thấy được hình ảnh của ta
-    myPeer.on('call', call => {
-        call.answer(localStream)
-        console.log("thuc hien lenh call")
-
-        const userVideo = document.createElement('video')
-
-        // them hình ành video của mình truyền sang user mới
-        call.on('stream', userVideoStream => {
-            addVideoStream(userVideo, userVideoStream)
-        })
-
-        call.on('close', () => {
-            userVideo.remove()
-        })
-        Peers[userId] = call
-    })
-    const addVideoStream = (video, stream) => {
-        video.srcObject = stream;
-        video.addEventListener('loadedmetadata', () => {
-            video.muted = false;
-            video.play()
-        })
-
-        videoGrid.appendChild(video)
-    }
-
-    const connectNewUser = (userId, localStream) => {
-        const userVideo = document.createElement('video')
-        const call = myPeer.call(userId, localStream)
-
-        console.log('connect new user')
-
-        // thêm hình ảnh video của user mới bên phía mình
-        call.on('stream', userVideoStream => {
-
-            console.log('thuc hien connectusermoi')
-            addVideoStream(userVideo, userVideoStream)
-        })
-
-        call.on('close', () => {
-            userVideo.remove()
-        })
-        Peers[userId] = call
-    }
-</script>
+    <div class="video_actions_mobile">
+        <div class="video_action_item">
+            <a onclick="handleChangeIconVideoActions('mic')" class="btn btn-outline-light">
+                <i id="mic_icon" class="bi bi-mic-fill"></i>
+            </a>
+        </div>
+        <div class="video_action_item">
+            <a onclick="handleChangeIconVideoActions('video')" class="btn btn-outline-light">
+                <i id="video_icon" class="bi bi-camera-video-fill"></i>
+            </a>
+        </div>
+        <div class="video_action_item">
+            <a onclick="handleChangeIconVideoActions('volume')" class="btn btn-outline-light">
+                <i id="volume_icon" class="bi bi-volume-up-fill"></i>
+            </a>
+        </div>
+    </div>
+</div>
 @section NavContent {
     <ul class="d-flex flex-column list-unstyled text-white gap-3 my-2 mx-2 navItems">
         <div class="nav_item">
@@ -261,3 +262,7 @@
         </a>
     </ul>
 }
+<script>
+    const ROOM_ID = '@ViewBag.roomId'
+</script>
+<script src="~/js/call.js"></script>

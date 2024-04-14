@@ -11,9 +11,15 @@ html {
     gap: 12px;
 
 }
+
+.messages_info_container_flex {
+    display: flex;
+}
+
 .admin_container_body {
     width: 70%;
 }
+
 .admin_account_item {
     display: flex;
     justify-content: space-between;
@@ -180,21 +186,45 @@ html {
     color: #fff !important;
 }
 
+.video_actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.video_actions_mobile {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+}
+
+.video_action_item a {
+    border-radius: 50%;
+    padding: 16px !important;
+    font-size: 24px;
+    width: 65px;
+    height: 65px;
+}
+
 .video_container {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 24px;
     border-radius: 12px;
+    gap: 12px;
 }
 
 .video_container video {
     display: flex;
     flex: 1;
-    max-width: 49%;
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 12px;
-    padding: 12px;
+    object-fit: cover;
 }
 
 .call_icon {
@@ -216,6 +246,11 @@ main {
 
 .text_left {
     text-align: left;
+}
+
+.room_call_container {
+    display: flex;
+    gap: 20px;
 }
 
 .chatroom_container {
@@ -282,6 +317,7 @@ main {
 
 .messages_display_container {
     display: flex;
+    padding: 8px;
     flex-direction: column;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -306,6 +342,7 @@ main {
     display: flex;
     max-height: 50px;
     justify-content: space-between;
+    align-items: center;
 }
 
 .messages_info_container i {
@@ -510,6 +547,43 @@ main {
 }
 
 @media (max-width: 768px) {
+    .video_actions {
+        display: none !important;
+    }
+
+    .video_actions_mobile {
+        display: flex !important;
+    }
+
+    .messages_container_room_call {
+        max-height: 52vh !important;
+    }
+
+    .room_call_container {
+        flex-direction: column !important;
+    }
+
+    .video_container {
+        flex-direction: row !important;
+    }
+
+    .video_container video {
+        max-width: 49% !important;
+        flex: 1;
+    }
+
+    .friend_card {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .friend_card_actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .admin_container_body {
         width: 100% !important;
     }
@@ -855,6 +929,7 @@ body {
     height: 100vh;
     overflow-y: scroll;
     scrollbar-width: none;
+    margin-top: 8px;
 }
 
 .recent_card {
@@ -1111,6 +1186,12 @@ input {
     font-size: 20px !important;
 }
 
+@media (max-width: 1920px) {
+    .video_actions_mobile {
+        display: none;
+    }
+}
+
 @media (max-width: 1065px) {
     .admin_account_action .admin_account_action_item {
         font-size: 14px !important;
@@ -1175,8 +1256,12 @@ input {
 }
 
 @media (max-width: 550px) {
+    .messages_container_room_call {
+        max-height: 50vh !important;
+    }
+
     .body_container {
-        max-width: 95% !important;
+        max-width: 100% !important;
     }
 
     .admin_account_item {
@@ -1212,6 +1297,7 @@ input {
 
     .main {
         margin: 0 !important;
+        padding: 12px !important;
     }
 
     .chatroom_card {
@@ -1370,7 +1456,39 @@ input {
     }
 }
 
+.message_item_friend_text p {
+    max-width: 50% !important;
+    /* Đặt chiều rộng cụ thể */
+    word-wrap: break-word !important;
+}
+
+.message_item_user_text p {
+    max-width: 50% !important;
+    /* Đặt chiều rộng cụ thể */
+    word-wrap: break-word !important;
+}
+
 @media (max-width: 400px) {
+    .message_call_btn_container {
+        width: 100% !important;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .message_call_btn_container a {
+        width: 75% !important;
+    }
+
+    .messages_info a {
+        font-size: 12px !important;
+        width: 100px;
+        display: inline-block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
     .admin_account_header_container {
         flex-direction: column !important;
         gap: 12px;
@@ -1417,6 +1535,19 @@ input {
 }
 
 @media (max-width: 300px) {
+    .messages_container_room_call {
+        max-height: 60vh !important;
+    }
+
+    .friend_card_name {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .message_item_img_container {
+        display: none !important;
+    }
+
     .admin_account_item_username_container p {
         font-size: 12px !important;
     }

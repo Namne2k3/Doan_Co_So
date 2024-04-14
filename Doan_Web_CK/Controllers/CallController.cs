@@ -35,13 +35,21 @@ namespace Doan_Web_CK
             var currentUser = await _userManager.GetUserAsync(User);
             var account = await _accountRepository.GetByIdAsync(currentUser.Id);
 
-            var currentChatRoom = await _chatRoomRepository.GetAllAsync();
-            var findedChatroom = currentChatRoom.SingleOrDefault(p => p.ConnectionRoomCall == roomId && p.UserId == currentUser.Id || p.FriendId == currentUser.Id);
+            var chatRooms = await _chatRoomRepository.GetAllAsync();
+
+            var currentChatRoom = chatRooms.Where(p =>
+                p.ConnectionRoomCall == roomId
+                &&
+                p.UserId == currentUser.Id || p.FriendId == currentUser.Id
+            ).ToList();
+
+            var findedChatroom = currentChatRoom.SingleOrDefault(p => p.ConnectionRoomCall == roomId);
+
             if (findedChatroom == null)
             {
                 return NotFound();
             }
-
+            ViewBag.currentChatroom = findedChatroom;
             ViewBag.CurrentUser = account;
             ViewBag.roomId = roomId;
             ViewBag.GetUserName = new Func<string, string>(GetUserName);

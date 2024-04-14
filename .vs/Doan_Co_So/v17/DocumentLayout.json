@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\views\\chat\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\views\\chat\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\views\\chat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\views\\chat\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|d:\\file\\code\\asp .net core\\doan_co_so\\doan_web_ck\\areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1B2DE2AD-B930-418D-A222-094D0EE852E6}|Doan_Web_CK\\Doan_Web_CK.csproj|solutionrelative:doan_web_ck\\areas\\admin\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,6 +51,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Views\\Chat\\Details.cshtml",
+              "RelativeDocumentMoniker": "Doan_Web_CK\\Views\\Chat\\Details.cshtml",
+              "ToolTip": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Views\\Chat\\Details.cshtml",
+              "RelativeToolTip": "Doan_Web_CK\\Views\\Chat\\Details.cshtml",
+              "ViewState": "AQIAADUAAAAAAAAAAAAmwEwAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-14T08:18:51.472Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "Doan_Web_CK\\Controllers\\ChatController.cs",
+              "ToolTip": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "Doan_Web_CK\\Controllers\\ChatController.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAkwEUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-14T08:17:16.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Views\\Chat\\Index.cshtml",
+              "RelativeDocumentMoniker": "Doan_Web_CK\\Views\\Chat\\Index.cshtml",
+              "ToolTip": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Views\\Chat\\Index.cshtml",
+              "RelativeToolTip": "Doan_Web_CK\\Views\\Chat\\Index.cshtml",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAewGAAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-14T08:13:10.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "IChatRoomRepository.cs",
               "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Repository\\IChatRoomRepository.cs",
               "RelativeDocumentMoniker": "Doan_Web_CK\\Repository\\IChatRoomRepository.cs",
@@ -46,12 +97,11 @@
               "RelativeToolTip": "Doan_Web_CK\\Repository\\IChatRoomRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-13T08:18:19.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-13T08:18:19.111Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\Areas\\Admin\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Doan_Web_CK\\Areas\\Admin\\Controllers\\AccountController.cs",

@@ -23,7 +23,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             divMessageItemImgContainer.appendChild(img);
 
             var pTextLeft = document.createElement("p");
-            pTextLeft.classList.add("text_left");
+            pTextLeft.classList.add("long_text");
             pTextLeft.textContent = encodedMsg;
 
             // Ghép các phần tử vào nhau
@@ -33,7 +33,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             var anchorElement = document.createElement('a');
 
             // Thêm các thuộc tính và giá trị cho thẻ a
-            
+
             anchorElement.href = `/call/${connectionRoomCall}`
             anchorElement.classList.add('btn', 'btn-outline-light', 'call_icon');
 
@@ -45,7 +45,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             anchorElement.appendChild(iconElement);
 
             pTextLeft.appendChild(anchorElement)
-            
+
             divMessageItemFriendText.appendChild(pTextLeft);
 
             var p_time = document.createElement("p");
@@ -76,7 +76,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             divMessageItemImgContainer.appendChild(img);
 
             var pTextLeft = document.createElement("p");
-            pTextLeft.classList.add("text_left");
+            pTextLeft.classList.add("long_text");
             pTextLeft.textContent = encodedMsg;
 
             // Ghép các phần tử vào nhau
@@ -114,7 +114,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             divMessageItemImgContainer.appendChild(img);
 
             var pTextLeft = document.createElement("p");
-            pTextLeft.classList.add("text_right");
+            pTextLeft.classList.add("long_text");
             pTextLeft.textContent = encodedMsg;
 
             // Ghép các phần tử vào nhau
@@ -124,7 +124,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             var anchorElement = document.createElement('a');
 
             // Thêm các thuộc tính và giá trị cho thẻ a
-           
+
             anchorElement.href = `/call/${connectionRoomCall}`
             anchorElement.classList.add('btn', 'btn-outline-light', 'call_icon');
 
@@ -169,7 +169,7 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
             divMessageItemImgContainer.appendChild(img);
 
             var pTextLeft = document.createElement("p");
-            pTextLeft.classList.add("text_right");
+            pTextLeft.classList.add("long_text");
             pTextLeft.textContent = encodedMsg;
 
             // Ghép các phần tử vào nhau
@@ -195,8 +195,71 @@ connection.on("ReceiveMessage", function (user, message, imageUrl, leftOrRight, 
         }
     }
 });
+connection.on('ReceiveToastMessageNof', function (userName, message, userImage, chatRoomId) {
+    const currentPath = window.location.pathname;
+    console.log("check currentPath >>> ", currentPath);
+    if (!currentPath.includes('/Chat')) {
+        console.log("da chay vao ReceiveToastMessageNof")
+        const toastDiv = document.createElement('div');
+        toastDiv.classList.add('toast', 'show');
+        toastDiv.setAttribute('role', 'alert');
+        toastDiv.setAttribute('aria-live', 'assertive');
+        toastDiv.setAttribute('aria-atomic', 'true');
 
+        // Tạo phần tử div chứa header
+        const headerDiv = document.createElement('div');
+        headerDiv.classList.add('toast-header');
+
+        // Tạo ảnh trong header (nếu cần)
+        const img = document.createElement('img');
+        img.classList.add('rounded', 'me-2', 'mw-100');
+        img.setAttribute('src', userImage);
+        img.setAttribute('alt', 'user image');
+        headerDiv.appendChild(img);
+
+        // Tạo phần tử strong chứa nội dung tiêu đề
+        const strong = document.createElement('strong');
+        strong.classList.add('me-auto');
+        strong.textContent = `${userName} has sent a message: "${message}"`;
+        headerDiv.appendChild(strong);
+
+        // Tạo nút close
+        const closeButton = document.createElement('button');
+        closeButton.setAttribute('type', 'button');
+        closeButton.classList.add('btn-close');
+        closeButton.setAttribute('data-bs-dismiss', 'toast');
+        closeButton.setAttribute('aria-label', 'Close');
+        headerDiv.appendChild(closeButton);
+
+        // Thêm header vào toast
+        toastDiv.appendChild(headerDiv);
+
+        // Tạo phần tử div chứa body
+        const bodyDiv = document.createElement('div');
+        bodyDiv.classList.add('toast-body');
+
+        // Tạo nút "Join Call"
+        const joinCallButton = document.createElement('a');
+        joinCallButton.classList.add('btn', 'btn-outline-dark');
+        joinCallButton.href = `/Chat/Details/${chatRoomId}`
+        joinCallButton.textContent = 'View Message';
+        bodyDiv.appendChild(joinCallButton);
+
+        // Thêm body vào toast
+        toastDiv.appendChild(bodyDiv);
+
+        // Thêm toast vào DOM
+        document.getElementById("toast_container").appendChild(toastDiv)
+
+        const toastTimeout = 5000; // 5 giây
+        setTimeout(() => {
+            toastDiv.remove()
+        }, toastTimeout);
+    }
+})
 connection.on('ReceiveToastMessage', function (userName, connectionRoomCall, userImage) {
+
+    console.log("da chay vao ReceiveToastMessage")
     // Tạo phần tử div chứa toast
     const toastDiv = document.createElement('div');
     toastDiv.classList.add('toast', 'show');
@@ -248,9 +311,14 @@ connection.on('ReceiveToastMessage', function (userName, connectionRoomCall, use
 
     // Thêm toast vào DOM
     document.getElementById("toast_container").appendChild(toastDiv)
+
+    const toastTimeout = 5000; // 5 giây
+    setTimeout(() => {
+        toastDiv.remove()
+    }, toastTimeout);
 })
-function handleAddToastMessage(userId, receiverId, connectionRoomCall) {
-   
+function handleAddToastMessageCall(userId, receiverId, connectionRoomCall) {
+
     connection.invoke("SendToastMessage", userId, receiverId, connectionRoomCall).catch(function (err) {
         return console.error(err.toString());
     })
@@ -264,9 +332,15 @@ function handleSendCallMessage(connectionRoomCall, userName) {
         connection.invoke("SendCallMessageToUser", user, receiverConnectionId, message, connectionRoomCall).catch(function (err) {
             return console.error(err.toString());
         });
-        handleAddToastMessage(user, receiverConnectionId, connectionRoomCall)
+        handleAddToastMessageCall(user, receiverConnectionId, connectionRoomCall)
     }
     window.location.href = `/call/${connectionRoomCall}`
+}
+
+function handleAddToastMessage(userId, receiverId, message, chatRoomId) {
+    connection.invoke("SendToastMessageNof", userId, receiverId, message, chatRoomId).catch(function (err) {
+        return console.error(err.toString());
+    })
 }
 
 function handleSendMessage(event) {
@@ -275,10 +349,12 @@ function handleSendMessage(event) {
             var user = document.getElementById("userInput").value;
             var receiverConnectionId = document.getElementById("receiverId").value;
             var message = document.getElementById("messageInput").value;
+            var chatRoomId = document.getElementById('chatRoom_Id').value;
             if (message != " ") {
                 connection.invoke("SendToUser", user, receiverConnectionId, message).catch(function (err) {
                     return console.error(err.toString());
                 });
+                handleAddToastMessage(user, receiverConnectionId, message, chatRoomId)
             }
             event.preventDefault();
         }
@@ -295,7 +371,7 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-if (document.getElementById("sendButton") != null ) {
+if (document.getElementById("sendButton") != null) {
     document.getElementById("sendButton").addEventListener("click", function (event) {
         var user = document.getElementById("userInput").value;
         var message = document.getElementById("messageInput").value;

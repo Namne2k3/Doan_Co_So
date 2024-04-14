@@ -1,12 +1,13 @@
 ﻿@model IEnumerable<Doan_Web_CK.Models.ChatRoom>
 @using Microsoft.AspNetCore.Identity
+
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+
 @{
     ViewData["Title"] = "Chat";
     var currentUser = ViewBag.currentUser;
     var currentChatroom = ViewBag.currentChatRoom;
-    
 }
 
 <div class="body_container">
@@ -46,7 +47,7 @@
                 <div class="messages_info_container">
                     @if (currentUser.Id == currentChatroom?.UserId)
                     {
-                        <div class="d-flex">
+                        <div class="messages_info_container_flex">
                             <div class="messages_info_img_container">
                                 <img src="@currentChatroom?.Friend?.ImageUrl" alt="messages_info_img" />
                             </div>
@@ -57,7 +58,7 @@
                     }
                     else
                     {
-                        <div class="d-flex">
+                        <div class="messages_info_container_flex">
                             <div class="messages_info_img_container">
                                 <img src="@currentChatroom?.User?.ImageUrl" alt="messages_info_img" />
                             </div>
@@ -67,7 +68,7 @@
                         </div>
                     }
 
-                    <div>
+                    <div class="message_call_btn_container">
                         <a onclick="handleSendCallMessage('@currentChatroom.ConnectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@currentChatroom.ConnectionRoomCall" class="btn btn-outline-light">
                             <i class="bi bi-telephone"></i>
                         </a>
@@ -86,7 +87,7 @@
                                         <div class="message_item_img_container">
                                             <img src="@ms.ApplicationUser.ImageUrl" alt="user_image" />
                                         </div>
-                                        <p>
+                                        <p class="long_text">
                                             @ms.Text
                                             @if ( ms.Type != null )
                                             {
@@ -122,6 +123,7 @@
                     }
                 </div>
                 <input id="userInput" value="@currentUser.Id" hidden />
+                <input hidden id="chatRoom_Id" value="@currentChatroom.Id" />
                 @if (currentUser?.Id == currentChatroom?.UserId)
                 {
                     <input id="receiverId" value="@currentChatroom?.FriendId" hidden />

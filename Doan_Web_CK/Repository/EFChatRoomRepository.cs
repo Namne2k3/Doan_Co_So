@@ -45,6 +45,7 @@ namespace Doan_Web_CK.Repository
             return await _context.chatRooms
                 .Include(p => p.User)
                 .Include(p => p.Friend)
+                .Include(p => p.Messages)
                 .ToListAsync();
         }
 

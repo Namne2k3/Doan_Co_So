@@ -145,6 +145,10 @@
       "PackagePath": "staticwebassets\\images\\windows-11-stock-orange-abstract-dark-background-3840x2400-8960.png"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\z3394636124217_acf172236cf388992dd2d2d53a4110e3.jpg",
+      "PackagePath": "staticwebassets\\images\\z3394636124217_acf172236cf388992dd2d2d53a4110e3.jpg"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\z5111718551586_c6cdb6f81d00f3a0136609fdc4021eaf.jpg",
       "PackagePath": "staticwebassets\\images\\z5111718551586_c6cdb6f81d00f3a0136609fdc4021eaf.jpg"
     },
@@ -163,6 +167,10 @@
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\z5310242644787_0927019ed7e5d8a29c52b1e592d13674.jpg",
       "PackagePath": "staticwebassets\\images\\z5310242644787_0927019ed7e5d8a29c52b1e592d13674.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\call.js",
+      "PackagePath": "staticwebassets\\js\\call.js"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\js\\chat.js",

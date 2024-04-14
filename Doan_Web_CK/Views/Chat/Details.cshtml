@@ -6,7 +6,6 @@
     ViewData["Title"] = "Chat";
     var currentUser = ViewBag.currentUser;
     var currentChatroom = ViewBag.currentChatRoom;
-    var connectionRoomCall = Guid.NewGuid();
 }
 
 <div class="body_container">
@@ -69,7 +68,7 @@
                     }
 
                     <div>
-                        <a onclick="handleSendCallMessage('@connectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@connectionRoomCall" class="btn btn-outline-light">
+                        <a onclick="handleSendCallMessage('@currentChatroom.ConnectionRoomCall', '@currentUser.UserName')" asp-action="Room" asp-controller="Call" asp-route-roomId="@currentChatroom.ConnectionRoomCall" class="btn btn-outline-light">
                             <i class="bi bi-telephone"></i>
                         </a>
                     </div>
@@ -124,6 +123,7 @@
                     }
                 </div>
                 <input id="userInput" value="@currentUser.Id" hidden />
+                <input hidden id="chatRoom_Id" value="@currentChatroom.Id" />
                 @if (currentUser?.Id == currentChatroom?.UserId)
                 {
                     <input id="receiverId" value="@currentChatroom?.FriendId" hidden />

@@ -48,7 +48,7 @@
                 <div id="profile_request_friend">
                     @if ( currentUser.Id != account.Id )
                     {
-                        if ( ViewBag.IsRequested(currentUser.Id, account.Id) == false )
+                        if (ViewBag.IsRequested(currentUser.Id, account.Id) == false)
                         {
                             if (ViewBag.IsFriend(currentUser.Id, account.Id) == true)
                             {
