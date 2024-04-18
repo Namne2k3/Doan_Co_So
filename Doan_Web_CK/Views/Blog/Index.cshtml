@@ -44,7 +44,7 @@
                         </form>
                     </div>
                 </div>
-                <a onclick="handleToggleFilter()" class="text-white" href="#">
+                <a class="filter_icon" onclick="handleToggleFilter()" class="text-white" href="#">
                     <i class="bi bi-filter" style="font-size: 32px"></i>
                 </a>
             </div>
@@ -194,7 +194,7 @@
                             <div class="d-flex justify-content-between">
                                 <h1 style="max-width: 80%">@item.Title</h1>
                             </div>
-                            <p class="mt-4">@item.Description</p>
+                            <p class="mt-4 blog_card_desc">@item.Description</p>
                         </div>
 
                         <div class="BlogCard_Img">
@@ -281,7 +281,7 @@
                         </div>
 
                         <div>
-                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-dark text-white">See More</a>
+                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-darka detail_button text-white">See More</a>
                         </div>
 
                         <div class="comment_container">
@@ -293,7 +293,7 @@
                                     </div>
 
                                     @* <form id="form_comment_@item.Id" asp-action="AddComment" method="post"> *@
-                                    <form id="form_comment_@item.Id" method="post">
+                                    <form class="form_comment" id="form_comment_@item.Id" method="post">
                                         <input value="@item.Id" type="number" hidden name="comment_blogid"/>
                                         <input value="@currentUser.Id" type="text" hidden name="comment_accountid"/>
                                         <input id="form_input_comment_@item.Id" onkeypress="handleKeyPress(event, @item.Id)" type="text" name="comment_content" style="background-color: #282b2d" class="form-control text-white" placeholder="Add comment..." />
@@ -500,4 +500,28 @@
             </div>
         </a>
     </ul>
+
+    <div class="theme_container">
+        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+            <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
+        </button>
+    </div>
 }
+<script>
+    if (!sessionStorage.getItem('theme')) {
+        var defaultTheme = '@Url.Content("~/css/site.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
+        sessionStorage.setItem('theme', defaultTheme);
+    }
+    function handleChangeTheme() {
+        var currentTheme = getSavedTheme();
+        var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
+
+        // Lưu trạng thái chủ đề mới
+        saveTheme(newTheme);
+
+        // Áp dụng chủ đề mới
+        applyTheme(newTheme);
+
+        handlehandleChangeIconTheme();
+    }
+</script>

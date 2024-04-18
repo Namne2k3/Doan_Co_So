@@ -8,7 +8,7 @@
     var user = ViewBag.User;
 }
 <div class="row margin_auto">
-    <h1 class="mt-2">Edit</h1>
+    <h1 class="edit_view_h1" class="mt-2">Edit</h1>
     <hr />
     <div class="col-lg-12 mx-auto">
         <form onsubmit="editblog()" id="edit_form" class="d-flex flex-column gap-3" method="post" enctype="multipart/form-data">
@@ -183,5 +183,28 @@
             </div>
         </a>
     </ul>
+    <div class="theme_container">
+        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+            <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
+        </button>
+    </div>
 }
+<script>
+    if (!sessionStorage.getItem('theme')) {
+        var defaultTheme = '@Url.Content("~/css/light.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
+        sessionStorage.setItem('theme', defaultTheme);
+    }
+    function handleChangeTheme() {
+        var currentTheme = getSavedTheme();
+        var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
+
+        // Lưu trạng thái chủ đề mới
+        saveTheme(newTheme);
+
+        // Áp dụng chủ đề mới
+        applyTheme(newTheme);
+
+        handlehandleChangeIconTheme();
+    }
+</script>
 

@@ -202,7 +202,7 @@
                     </div>
 
                     <div>
-                        <a onclick="handleLoadAllComments(@item.Id)" class="btn btn-outline-dark text-white">All Comments</a>
+                        <a onclick="handleLoadAllComments(@item.Id)" class="btn btn-outline-light text-white button_all_cmt">All Comments</a>
                     </div>
                     <div class="comment_container">
                         @if ( currentUser != null )
@@ -213,7 +213,7 @@
                                 </div>
 
                                 @* <form id="form_comment_@item.Id" asp-action="AddComment" method="post"> *@
-                                <form id="form_comment_@item.Id" method="post">
+                                <form class="form_comment" id="form_comment_@item.Id" method="post">
                                     <input value="@item.Id" type="number" hidden name="comment_blogid"/>
                                     <input value="@currentUser.Id" type="text" hidden name="comment_accountid"/>
                                     <input id="form_input_comment_@item.Id" onkeypress="handleKeyPress(event, @item.Id)" type="text" name="comment_content" style="background-color: #282b2d" class="form-control text-white" placeholder="Add comment..." />
@@ -395,6 +395,29 @@
             </div>
         </a>
     </ul>
+    <div class="theme_container">
+        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+            <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
+        </button>
+    </div>
 }
+<script>
+    if (!sessionStorage.getItem('theme')) {
+        var defaultTheme = '@Url.Content("~/css/light.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
+        sessionStorage.setItem('theme', defaultTheme);
+    }
+    function handleChangeTheme() {
+        var currentTheme = getSavedTheme();
+        var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
+
+        // Lưu trạng thái chủ đề mới
+        saveTheme(newTheme);
+
+        // Áp dụng chủ đề mới
+        applyTheme(newTheme);
+
+        handlehandleChangeIconTheme();
+    }
+</script>
 
 

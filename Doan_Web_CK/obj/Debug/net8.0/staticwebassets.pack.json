@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\Doan_Web_CK.bundle.scp.css"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\css\\light.css",
+      "PackagePath": "staticwebassets\\css\\light.css"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -25,12 +29,20 @@
       "PackagePath": "staticwebassets\\images\\20240326-21-1375991-l-jpeg-171-3190-7304-1711771395.jpg"
     },
     {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\DSC03816-JPG-5625-1713240384.jpg",
+      "PackagePath": "staticwebassets\\images\\DSC03816-JPG-5625-1713240384.jpg"
+    },
+    {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\DSCF0894-5532-1712845905.jpg",
       "PackagePath": "staticwebassets\\images\\DSCF0894-5532-1712845905.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\E4NXNZtVkAUQTP1.jpg",
       "PackagePath": "staticwebassets\\images\\E4NXNZtVkAUQTP1.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\IMG_20240223_181241.jpg",
+      "PackagePath": "staticwebassets\\images\\IMG_20240223_181241.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\MSI-Bravo-15-Ryzen-5-5600H-RX-5500M-02.jpg",
@@ -67,6 +79,10 @@
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\a1-2752-1712909280.jpg",
       "PackagePath": "staticwebassets\\images\\a1-2752-1712909280.jpg"
+    },
+    {
+      "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\ai-baidu-6486-1678986788-9225-1713277277.jpg",
+      "PackagePath": "staticwebassets\\images\\ai-baidu-6486-1678986788-9225-1713277277.jpg"
     },
     {
       "Id": "D:\\File\\Code\\ASP .NET Core\\Doan_Co_So\\Doan_Web_CK\\wwwroot\\images\\ai-coding-1710410299-6906-1710410348.jpg",

@@ -5,19 +5,21 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1 class="login_view_h1">@ViewData["Title"]</h1>
 <div class="login_container">
     <div class="col-md-7" style="color: #000">
-        <form id="account" method="post">
+        <form class="form_login" id="account" method="post">
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
             <div class="form-floating mb-3">
-                <input style="background-color: #282b2d" asp-for="Input.Email" class="form-control text-white" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                <input style="background-color: #282b2d" asp-for="Input.Email" class="form-control text-white"
+                    autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <label asp-for="Input.Email" class="form-label text-white">Email</label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-floating mb-3">
-                <input asp-for="Input.Password" class="form-control text-white" style="background-color: #282b2d" autocomplete="current-password" aria-required="true" placeholder="password" />
+                <input asp-for="Input.Password" class="form-control text-white" style="background-color: #282b2d"
+                    autocomplete="current-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.Password" class="form-label text-white">Password</label>
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
@@ -30,12 +32,13 @@
             <div>
                 <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-outline-light">Log in</button>
             </div>
-            <div class="mt-4">
+            <div class="mt-4 more_action_view">
                 <p>
                     <a id="forgot-password" class="text-white" asp-page="./ForgotPassword">Forgot your password?</a>
                 </p>
                 <p>
-                    <a asp-page="./Register" class="text-white" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    <a asp-page="./Register" class="text-white" asp-route-returnUrl="@Model.ReturnUrl">Register as a new
+                        user</a>
                 </p>
             </div>
         </form>
@@ -49,7 +52,8 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                            There are no external authentication services configured. See this <a
+                                href="https://go.microsoft.com/fwlink/?LinkID=532715">
                                 article
                                 about setting up this ASP.NET application to support logging in via external services
                             </a>.
@@ -58,14 +62,16 @@
                 }
                 else
                 {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post"
+                        class="form-horizontal">
                         <div class="d-flex gap-4">
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
                                 {
                                     if (provider.DisplayName == "Facebook")
                                     {
-                                        <button type="submit" class="btn btn-outline-light" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                        <button type="submit" class="btn btn-outline-light" name="provider" value="@provider.Name"
+                                            title="Log in using your @provider.DisplayName account">
                                             <i class="bi bi-facebook"></i>
                                             Log in with @provider.DisplayName
                                         </button>
@@ -73,7 +79,8 @@
 
                                     if (provider.DisplayName == "Google")
                                     {
-                                        <button type="submit" class="btn btn-outline-light" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                        <button type="submit" class="btn btn-outline-light" name="provider" value="@provider.Name"
+                                            title="Log in using your @provider.DisplayName account">
                                             <i class="bi bi-google"></i>
                                             Log in with @provider.DisplayName
                                         </button>

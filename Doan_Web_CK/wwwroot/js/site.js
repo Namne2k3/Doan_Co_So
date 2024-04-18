@@ -1,4 +1,38 @@
 ﻿
+function handlehandleChangeIconTheme() {
+    var element = document.getElementById('theme_icon');
+    if (element) {
+        if (element.classList.contains('bi-moon-fill')) {
+            element.classList.remove('bi-moon-fill')
+            element.classList.add('bi-brightness-high-fill')
+        } else {
+            element.classList.remove('bi-brightness-high-fill')
+            element.classList.add('bi-moon-fill')
+        }
+    }
+}
+function getSavedTheme() {
+    return sessionStorage.getItem('theme');
+}
+var defaultTheme = '/css/light.css';
+// Hàm lưu giá trị chủ đề vào sessionStorage
+function saveTheme(theme) {
+    sessionStorage.setItem('theme', theme);
+}
+
+// Hàm áp dụng chủ đề
+function applyTheme(theme) {
+    var themeLink = document.getElementById('theme-css');
+    themeLink.setAttribute('href', theme);
+}
+
+// Kiểm tra nếu có trạng thái chủ đề được lưu trữ và áp dụng nó khi trang được tải lại
+document.addEventListener('DOMContentLoaded', function () {
+    var savedTheme = getSavedTheme();
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    }
+});
 function createTableRow(item) {
 
     var row = document.createElement("tr");

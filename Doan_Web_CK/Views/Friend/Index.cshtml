@@ -24,10 +24,10 @@
                             <div class="friend_card_img_container">
                                 @if ( f.UserId == currentUser.Id )
                                 {
-                                    <img class="friend_card_img" src="@f.Friend?.ImageUrl" />
+                                    <img alt="user profile image" class="friend_card_img" src="@f.Friend?.ImageUrl" />
                                 } else
                                 {
-                                    <img class="friend_card_img" src="@f.User?.ImageUrl" />
+                                    <img alt="user profile image" class="friend_card_img" src="@f.User?.ImageUrl" />
                                 }
                             </div>
 
@@ -84,7 +84,7 @@
             <div class="navIcon text-center">
                 <i class="icon bi bi-house-door-fill"></i>
             </div>
-            <div class="navTitle w-75 fs-4 text-start my-auto">
+            <div class="navTitle w-75 text-start my-auto">
                 Blogs
             </div>
         </a>
@@ -94,7 +94,7 @@
                 <div class="navIcon text-center">
                     <i class="icon bi bi-people-fill"></i>
                 </div>
-                <div class="navTitle w-75 fs-4 text-start my-auto">
+                <div class="navTitle w-75 text-start my-auto">
                     Friends
                 </div>
             </a>
@@ -103,11 +103,11 @@
                 <div id="nof_icon_container">
                     <a asp-action="Nofitications" asp-controller="Blog" id="navNofitication" class="nof_icon text-center">
                         <i class="navIcon icon bi bi-bell-fill"></i>
-                        <p class="navTitle w-75 fs-4 text-start my-auto">Nofitications</p>
+                        <p class="navTitle w-75 text-start my-auto">Nofitications</p>
                     </a>
                 </div>
                 <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
-
+                    
                     <div class="d-flex justify-content-between">
                         <strong>Nofitication</strong>
                         <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
@@ -120,19 +120,19 @@
                         {
                             @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
                             {
-                                switch (nof.Type)
+                                switch ( nof.Type )
                                 {
                                     case "Addfriend":
-                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
                                         {
                                             <div class="nofi_card">
-                                                <p class="nofi_card_content">
+                                                <div class="nofi_card_content">
                                                     <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content
                                                     <span class="nofi_card_date">@nof.Date</span>
-                                                </p>
-                                                <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
-                                                    <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
-                                                    <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                    <div id="nofi_card_actions_@nof.Id" class="nofi_card_actions">
+                                                        <a onclick="handleAccept('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Accept</a>
+                                                        <a onclick="handleDeny('@currentUser?.Id', @nof.Id)" class="btn btn-outline-dark">Deny</a>
+                                                    </div>
                                                 </div>
                                                 <div>
                                                     <a onclick="handleDeleteNofitication(@nof.Id)">
@@ -141,9 +141,9 @@
                                                 </div>
                                             </div>
                                         }
-
+                                    
                                         break;
-                                    case "Comment":
+                                    case "Comment" :
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -156,7 +156,7 @@
                                             </div>
                                         </div>
                                         break;
-                                    case "Like":
+                                    case "Like" :
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -170,7 +170,7 @@
                                         </div>
                                         break;
                                     default:
-
+                                
                                         break;
                                 }
                             }
@@ -184,19 +184,43 @@
             <div class="navIcon text-center">
                 <i class="icon bi bi-wechat"></i>
             </div>
-            <div class="navTitle w-75 fs-4 text-start my-auto">
+            <div class="navTitle w-75 text-start my-auto">
                 Messages
             </div>
         </a>
-        <a href="/Profile" class="nav_item">
+        <a asp-controller="Profile" asp-action="Index" class="nav_item">
             @* <a asp-controller="Profile" asp-route-id="@UserManager.GetUserId(User)" asp-action="Index" class="nav_item"> *@
             <div class="navIcon text-center">
                 <i class="icon bi bi-person-circle"></i>
             </div>
-            <div class="navTitle w-75 fs-4 text-start my-auto">
+            <div class="navTitle w-75 text-start my-auto">
                 Profile
             </div>
         </a>
     </ul>
+
+    <div class="theme_container">
+        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+            <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
+        </button>
+    </div>
 }
+<script>
+    if (!sessionStorage.getItem('theme')) {
+        var defaultTheme = '@Url.Content("~/css/light.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
+        sessionStorage.setItem('theme', defaultTheme);
+    }
+    function handleChangeTheme() {
+        var currentTheme = getSavedTheme();
+        var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
+
+        // Lưu trạng thái chủ đề mới
+        saveTheme(newTheme);
+
+        // Áp dụng chủ đề mới
+        applyTheme(newTheme);
+
+        handlehandleChangeIconTheme();
+    }
+</script>
 

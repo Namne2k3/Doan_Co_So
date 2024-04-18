@@ -9,7 +9,7 @@
 }
 
 <div class="my-3">
-    <a class="btn btn-outline-light" asp-action="Index">Back to Blogs</a>
+    <a class="back_btn btn btn-outline-light" asp-action="Index">Back to Blogs</a>
 </div>
 
 <div class="blog_card margin_auto">
@@ -76,9 +76,9 @@
     </div>
     <div class="heading">
         <div class="d-flex justify-content-between">
-            <h1 style="max-width: 80%">@Model.Title</h1>
+            <h1 class="blog_details_title" style="max-width: 80%">@Model.Title</h1>
         </div>
-        <p class="mt-4">@Model.Description</p>
+        <p class="mt-4 blog_details_desc">@Model.Description</p>
     </div>
 
     <div class="BlogCard_Img">
@@ -86,7 +86,7 @@
     </div>
 
     <div id="content_@Model.Id" class="Blogcard_Content mt-4 temp_hidden">
-        <p>@Html.Raw(@Model.Content.Replace("\n", "<br>"))</p>
+        <p class="blog_details_content">@Html.Raw(@Model.Content.Replace("\n", "<br>"))</p>
     </div>
 
     <div class="toggle_more justify-content-center d-flex">
@@ -160,7 +160,7 @@
     </div>
 
     <div>
-        <a onclick="handleLoadAllComments(@Model.Id)" class="btn btn-outline-dark text-white">All Comments</a>
+        <a onclick="handleLoadAllComments(@Model.Id)" class="btn btn-outline-dark text-white button_all_cmt">All Comments</a>
     </div>
 
     <div class="comment_container">
@@ -346,4 +346,24 @@
             </div>
         </a>
     </ul>
+    <div class="theme_container">
+        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+            <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
+        </button>
+    </div>
 }
+<script>
+    // Kiểm tra nếu có trạng thái chủ đề được lưu trữ và áp dụng nó khi trang được tải lại
+    function handleChangeTheme() {
+        var currentTheme = getSavedTheme();
+        var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
+
+        // Lưu trạng thái chủ đề mới
+        saveTheme(newTheme);
+
+        // Áp dụng chủ đề mới
+        applyTheme(newTheme);
+
+        handlehandleChangeIconTheme();
+    }
+</script>
