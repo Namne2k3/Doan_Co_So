@@ -97,7 +97,7 @@
                                             }
                                         </p>
                                     </div>
-                                    <p style="text-align: right;" >@ms.Time</p>
+                                    <p class="message_item_date" style="text-align: right;" >@ms.Time</p>
                                 </div>
                             } else
                             {
@@ -116,7 +116,7 @@
                                             }
                                         </p>
                                     </div>
-                                    <p style="text-align: left;">@ms.Time</p>
+                                    <p class="message_item_date" style="text-align: left;">@ms.Time</p>
                                 </div>   
                             }
                         }
@@ -265,15 +265,15 @@
             </div>
         </a>
     </ul>
-    <div class="theme_container">
-        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+    <div id="theme_container" class="theme_container">
+        @* <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
             <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
-        </button>
+        </button> *@
     </div>
 }
 <script>
     if (!sessionStorage.getItem('theme')) {
-        var defaultTheme = '@Url.Content("~/css/light.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
+        var defaultTheme = '@Url.Content("~/css/site.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
         sessionStorage.setItem('theme', defaultTheme);
     }
     function handleChangeTheme() {

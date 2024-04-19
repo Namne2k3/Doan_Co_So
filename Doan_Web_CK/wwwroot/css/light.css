@@ -272,6 +272,7 @@ footer {
 main {
     margin: 1.5rem;
     background-color: #f0f2f5 !important;
+    height: 100%;
 }
 
 .text_right {
@@ -293,18 +294,19 @@ main {
     gap: 16px;
     width: 30%;
     min-height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
 }
 
 .chatroom_card {
     display: flex;
-    background-color: #111213;
+    background-color: #fff;
     border-radius: 12px;
     gap: 8px;
     padding: 12px;
     color: white;
     text-decoration: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 .chatroom_card_img_container {
@@ -326,6 +328,7 @@ main {
 }
 
 .chatroom_card_info {
+    color: #000 !important;
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -343,17 +346,18 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #111213;
+    background-color: #fff;
     padding: 12px;
     border-radius: 12px;
     position: relative;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
 .messages_display_container {
     display: flex;
     padding: 8px;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
     flex: 11;
     gap: 1rem;
@@ -409,13 +413,13 @@ main {
 
 .message_item p {
     font-size: 12px;
-    color: #ccc;
+    color: #000;
     font-style: italic;
     margin-top: 2px;
 }
 
-.message_input {
-    border-radius: 32px;
+.message_item_date {
+    color: #000 !important;
 }
 
 .message_item_user_text {
@@ -430,6 +434,10 @@ main {
     border-radius: 12px;
     background-color: #43545a;
     display: inline-block;
+    background-color: #bcc0c5;
+    max-width: 50% !important;
+    /* Đặt chiều rộng cụ thể */
+    word-wrap: break-word !important;
 }
 
 .message_item_friend_text {
@@ -441,8 +449,11 @@ main {
 .message_item_friend_text p {
     padding: 12px;
     border-radius: 12px;
-    background-color: #212529;
+    background-color: #bcc0c5;
     display: inline-block;
+    max-width: 50% !important;
+    /* Đặt chiều rộng cụ thể */
+    word-wrap: break-word !important;
 }
 
 .message_item_img_container {
@@ -460,6 +471,7 @@ main {
 .message_section_container {
     display: flex;
     gap: 8px;
+    height: 100%;
 }
 
 #update_fail_blog,
@@ -505,7 +517,7 @@ main {
     flex-wrap: wrap;
     gap: 12px;
     max-height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
     margin-top: 12px;
 }
@@ -789,7 +801,7 @@ main {
     background-color: #f0f2f5;
     border: 1px solid #585b5d;
     width: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
     max-height: 350px;
     z-index: 100;
@@ -1041,7 +1053,7 @@ body {
     padding: 0 16px 16px 16px;
     margin: -16px;
     height: 100vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width: none;
     margin-top: 8px;
 }
@@ -1117,11 +1129,18 @@ body {
     color: #000;
 }
 
-.body_container {
-    overflow-y: scroll;
-    max-height: 100vh;
+.body_blog_section {
+    overflow-y: auto;
     scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.body_container {
+    /* overflow-y: auto; */
+    /* max-height: 100vh; */
+    /* scrollbar-width: none; */
     justify-content: center;
+    height: 100%;
     /*margin: auto;*/
 }
 
@@ -1285,6 +1304,13 @@ form button {
 .profile_info h1,
 .profile_info p {
     color: #fff !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+    padding: 4px;
+    border-radius: 12px;
+}
+
+.input_change_username {
+    color: #000 !important;
 }
 
 .profile_changePhoto {
@@ -1367,7 +1393,8 @@ form button {
 
 .body_section {
     max-height: 100vh;
-    overflow-y: scroll;
+    width: 100%;
+    overflow-y: auto;
     scrollbar-width: none;
     background-color: #f0f2f5 !important;
 }
@@ -1530,9 +1557,10 @@ form button {
         width: 100%;
         overflow-x: scroll;
         scrollbar-width: none;
-        background-color: #111213;
+        background-color: #fff;
         padding: 12px;
         border-radius: 12px;
+        border: 1px solid #000;
     }
 
     .chatroom_container {
@@ -1610,7 +1638,7 @@ form button {
     .navIcons {
         flex-direction: row !important;
         width: 100%;
-        position: fixed;
+        /* position: fixed; */
     }
 
     .navIcons ul {
@@ -1621,7 +1649,7 @@ form button {
     .body_section {
         width: 100%;
         height: 100vh;
-        margin-top: 66px;
+        /* margin-top: 66px; */
     }
 
     .logo_container {
@@ -1670,18 +1698,6 @@ form button {
     .friend_card_actions a {
         font-size: 12px;
     }
-}
-
-.message_item_friend_text p {
-    max-width: 50% !important;
-    /* Đặt chiều rộng cụ thể */
-    word-wrap: break-word !important;
-}
-
-.message_item_user_text p {
-    max-width: 50% !important;
-    /* Đặt chiều rộng cụ thể */
-    word-wrap: break-word !important;
 }
 
 @media (max-width: 400px) {

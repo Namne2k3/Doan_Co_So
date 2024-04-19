@@ -19,15 +19,14 @@
 <body>
     <div class="d-flex flex-column vh-100">
         <div class="nav_container h-100 position-relative">
-            <div class="navIcons col-md-2 justify-content-between d-flex flex-column"
-                style="border-right: 1px solid #ccc">
+            <div class="navIcons justify-content-between d-flex flex-column" style="border-right: 1px solid #ccc">
                 @RenderSection("NavContent", required: false)
                 @if (!SignInManager.IsSignedIn(User))
                 {
                     <partial hidden name="_LoginPartial" />
                 }
             </div>
-            <div class="body_section col-md-10 text-white" style="background-color: #212529">
+            <div class="body_section" style="background-color: #212529">
                 <main class="main" role="main" class="pb-3">
                     @RenderBody()
                 </main>

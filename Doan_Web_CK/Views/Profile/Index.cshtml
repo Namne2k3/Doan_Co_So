@@ -36,7 +36,7 @@
                     <h1 id="user_name_h1" class="profile_username mw-100">
                         @account.UserName
                     </h1>
-                    <input type="text" oninput="syncInputs(this.value,'input2')" style="min-width: 100%; font-size: 1.4rem; background-color: #282b2d; margin-bottom: 8px;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control text-white" />
+                    <input type="text" oninput="syncInputs(this.value,'input2')" style="min-width: 100%; font-size: 1.4rem; background-color: #282b2d; margin-bottom: 8px;" value="@account.UserName" id="input_username_edit" class="hidden w-100 form-control text-white input_change_username" />
                     @if ( currentUser.Id == account.Id )
                     {
                         <a onclick="toogleEditUsername()" class="text-white hover_class">
@@ -84,7 +84,7 @@
 
     @if ( currentUser.Id == account.Id )
     {
-        <div class="flex-column justify-content-end" id="saveChange_button">
+        <div class="flex-column justify-content-end my-3" id="saveChange_button">
             <form asp-action="Edit" method="Post" enctype="multipart/form-data">
                 <input value="@account.ImageUrl" name="profile_photo" hidden type="file" accept="image/*" id="profile_photo_input" />
                 <input value="@account.UserName" onchange="handleEdituserName()" name="user_name" hidden type="text" id="input2" />
@@ -395,10 +395,10 @@
             </div>
         </a>
     </ul>
-    <div class="theme_container">
-        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+    <div id="theme_container" class="theme_container">
+        @* <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
             <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
-        </button>
+        </button> *@
     </div>
 }
 <script>

@@ -14,7 +14,8 @@ function handlehandleChangeIconTheme() {
 function getSavedTheme() {
     return sessionStorage.getItem('theme');
 }
-var defaultTheme = '/css/light.css';
+var defaultTheme = '/css/site.css';
+
 // Hàm lưu giá trị chủ đề vào sessionStorage
 function saveTheme(theme) {
     sessionStorage.setItem('theme', theme);
@@ -29,6 +30,54 @@ function applyTheme(theme) {
 // Kiểm tra nếu có trạng thái chủ đề được lưu trữ và áp dụng nó khi trang được tải lại
 document.addEventListener('DOMContentLoaded', function () {
     var savedTheme = getSavedTheme();
+    if (savedTheme == '/css/light.css') {
+        var theme_container = document.getElementById('theme_container')
+        var button = document.createElement("button");
+
+        // Thiết lập các thuộc tính cho button
+        button.setAttribute("class", "btn btn-outline-light");
+        button.setAttribute("id", "theme-toggle");
+        button.setAttribute("title", "Toggles light & dark");
+        button.setAttribute("aria-label", "auto");
+        button.setAttribute("aria-live", "polite");
+
+        // Tạo phần tử icon
+        var icon = document.createElement("i");
+        icon.setAttribute("id", "theme_icon");
+        icon.setAttribute("class", "bi bi-brightness-high-fill");
+
+        // Thêm icon vào trong button
+        button.appendChild(icon);
+
+        // Thêm sự kiện onclick cho button
+        button.onclick = handleChangeTheme;
+
+        theme_container.appendChild(button);
+    } else {
+        var theme_container = document.getElementById('theme_container')
+        var button = document.createElement("button");
+
+        // Thiết lập các thuộc tính cho button
+        button.setAttribute("class", "btn btn-outline-light");
+        button.setAttribute("id", "theme-toggle");
+        button.setAttribute("title", "Toggles light & dark");
+        button.setAttribute("aria-label", "auto");
+        button.setAttribute("aria-live", "polite");
+
+        // Tạo phần tử icon
+        var icon = document.createElement("i");
+        icon.setAttribute("id", "theme_icon");
+        icon.setAttribute("class", "bi bi-moon-fill");
+
+        // Thêm icon vào trong button
+        button.appendChild(icon);
+
+        // Thêm sự kiện onclick cho button
+        button.onclick = handleChangeTheme;
+
+        theme_container.appendChild(button);
+    }
+
     if (savedTheme) {
         applyTheme(savedTheme);
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Doan_Web_CK.Models
@@ -9,6 +10,7 @@ namespace Doan_Web_CK.Models
         {
             Messages = new List<Message>();
             Chatrooms = new List<ChatRoom>();
+            ImageUrl = "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
         }
         [Required]
         public string? ImageUrl { get; set; }

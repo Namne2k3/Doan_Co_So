@@ -10,9 +10,9 @@
     var currentUser = ViewBag?.CurrentUser;
     var MyBlogs = ViewBag?.MyBlogs;
 }
-<div class="d-flex gap-4 justify-content-center">
+<div class="body_blog_section d-flex gap-4 justify-content-center">
     <div class="body_container" style="width: 75%">
-        <h1>WebCommun</h1>
+        @* <h1>WebCommun</h1> *@
         @if ( currentUser != null )
         {
             <div class="mt-3 d-flex justify-content-between align-items-center">
@@ -501,10 +501,10 @@
         </a>
     </ul>
 
-    <div class="theme_container">
-        <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+    <div id="theme_container" class="theme_container">
+        @* <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
             <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
-        </button>
+        </button> *@
     </div>
 }
 <script>
@@ -514,6 +514,7 @@
     }
     function handleChangeTheme() {
         var currentTheme = getSavedTheme();
+        
         var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
 
         // Lưu trạng thái chủ đề mới

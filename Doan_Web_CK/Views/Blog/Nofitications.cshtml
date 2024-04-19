@@ -93,7 +93,7 @@
                     </a>
                 </div>
                 <div id="nav_item_nofitications" class="hidden nav_item_nofitications position-absolute">
-
+                    
                     <div class="d-flex justify-content-between">
                         <strong>Nofitication</strong>
                         <a class="reload_icon" onclick="reloadAllNof('@currentUser?.Id')">
@@ -106,10 +106,10 @@
                         {
                             @foreach (var nof in ViewBag.GetAllNofOfUser(currentUser?.Id))
                             {
-                                switch (nof.Type)
+                                switch ( nof.Type )
                                 {
                                     case "Addfriend":
-                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true)
+                                        if (ViewBag.IsRequested(nof.SenderAccountId, nof.RecieveAccountId) == true )
                                         {
                                             <div class="nofi_card">
                                                 <div class="nofi_card_content">
@@ -127,9 +127,9 @@
                                                 </div>
                                             </div>
                                         }
-
+                                    
                                         break;
-                                    case "Comment":
+                                    case "Comment" :
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -142,7 +142,7 @@
                                             </div>
                                         </div>
                                         break;
-                                    case "Like":
+                                    case "Like" :
                                         <div class="nofi_card">
                                             <p class="nofi_card_content">
                                                 <a asp-action="Index" asp-controller="Profile" asp-route-id="@nof.SenderAccountId">@ViewBag.GetUserName(nof.SenderAccountId)</a> @nof.Content <a asp-route-id="@nof.BlogId" asp-action="Details" asp-controller="Blog">Link to blog</a>
@@ -156,6 +156,7 @@
                                         </div>
                                         break;
                                     default:
+                                
                                         break;
                                 }
                             }
@@ -183,5 +184,29 @@
             </div>
         </a>
     </ul>
+
+    <div id="theme_container" class="theme_container">
+        @* <button onclick="handleChangeTheme()" class="btn btn-outline-light" id="theme-toggle" title="Toggles light & dark" aria-label="auto" aria-live="polite">
+            <i id="theme_icon" class="bi bi-brightness-high-fill"></i>
+        </button> *@
+    </div>
 }
+<script>
+    if (!sessionStorage.getItem('theme')) {
+        var defaultTheme = '@Url.Content("~/css/light.css")'; // Giá trị mặc định, có thể là bất kỳ giá trị nào bạn muốn
+        sessionStorage.setItem('theme', defaultTheme);
+    }
+    function handleChangeTheme() {
+        var currentTheme = getSavedTheme();
+        var newTheme = currentTheme.includes('site.css') ? '@Url.Content("~/css/light.css")' : '@Url.Content("~/css/site.css")';
+
+        // Lưu trạng thái chủ đề mới
+        saveTheme(newTheme);
+
+        // Áp dụng chủ đề mới
+        applyTheme(newTheme);
+
+        handlehandleChangeIconTheme();
+    }
+</script>
 
